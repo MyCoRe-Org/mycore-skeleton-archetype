@@ -11,7 +11,7 @@
   <name>${projectName}: Command Line Interface</name>
   <description>ZIP package ready to run MyCoRe commands from shell</description>
   <properties>
-    <MCR.AppName>skeleton</MCR.AppName>
+    <MCR.AppName>${rootArtifactId}</MCR.AppName>
     <acl-description.admins>administrators only</acl-description.admins>
     <acl-description.all>always allowed</acl-description.all>
     <acl-description.editors>administrators and editors</acl-description.editors>
@@ -117,7 +117,7 @@
     </dependency>
     <dependency>
       <groupId>${project.parent.groupId}</groupId>
-      <artifactId>skeleton-module</artifactId>
+      <artifactId>${rootArtifactId}-module</artifactId>
       <version>${project.parent.version}</version>
       <scope>runtime</scope>
     </dependency>

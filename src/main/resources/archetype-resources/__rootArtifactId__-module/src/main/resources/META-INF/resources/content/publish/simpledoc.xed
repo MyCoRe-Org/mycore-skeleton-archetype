@@ -7,7 +7,7 @@
       <xed:source uri="mcrobject:{$id}" />
       <xed:cancel url="../index.xml" />
       <xed:bind xpath="/mycoreobject">
-        <xed:bind xpath="@ID" initially="skeleton_simpledoc_00000000" />
+        <xed:bind xpath="@ID" initially="${rootArtifactId}_simpledoc_00000000" />
         <xed:bind xpath="metadata">
           <fieldset>
             <legend>

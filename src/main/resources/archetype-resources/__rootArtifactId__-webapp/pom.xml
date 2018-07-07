@@ -12,11 +12,11 @@
   <name>${projectName}: WebApp</name>
   <description>Web application that bundles are part in a single artifact</description>
   <properties>
-    <MCR.AppName>skeleton</MCR.AppName>
-    <solr.location>${skeleton.solr.data.dir}</solr.location>
+    <MCR.AppName>${rootArtifactId}</MCR.AppName>
+    <solr.location>${${rootArtifactId}.solr.data.dir}</solr.location>
   </properties>
   <build>
-    <finalName>skeleton-${project.version}</finalName>
+    <finalName>${rootArtifactId}-${project.version}</finalName>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -29,7 +29,7 @@
                 <!-- used by this war -->
                 <useDependency>org.mycore:mycore-meta</useDependency>
                 <useDependency>org.mycore.mir:mir-common-resources</useDependency>
-                <useDependency>org.mycore.skeleton:skeleton-module</useDependency>
+                <useDependency>${groupId}:${rootArtifactId}-module</useDependency>
               </usedDependencies>
             </configuration>
           </execution>
@@ -97,7 +97,7 @@
           <solrHomeTemplate>${project.basedir}/src/main/solrHome</solrHomeTemplate>
           <pluginCoreMappings>
             <pluginCoreMapping>
-              <core>skeleton</core>
+              <core>${rootArtifactId}</core>
               <plugin>org.mycore.solr:mycore-solr-plugin</plugin>
             </pluginCoreMapping>
           </pluginCoreMappings>
@@ -113,7 +113,7 @@
     </dependency>
     <dependency>
       <groupId>${project.groupId}</groupId>
-      <artifactId>skeleton-module</artifactId>
+      <artifactId>${rootArtifactId}-module</artifactId>
       <version>${project.version}</version>
     </dependency>
     <dependency>

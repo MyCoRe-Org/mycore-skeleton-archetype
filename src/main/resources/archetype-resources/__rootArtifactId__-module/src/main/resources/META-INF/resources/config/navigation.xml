@@ -2,7 +2,7 @@
 #set( $symbol_dollar = '$' )
 #set( $symbol_escape = '\' )
 <?xml version="1.0" encoding="UTF-8"?>
-<navigation dir="/content" href="navigation" hrefStartingPage="/content/index.xml" template="template_skeleton">
+<navigation dir="/content" href="navigation" hrefStartingPage="/content/index.xml" template="template_${rootArtifactId}">
   <menu id="brand" dir="/content/brand">
     <label xml:lang="de">Menü</label>
     <label xml:lang="en">menu</label>
