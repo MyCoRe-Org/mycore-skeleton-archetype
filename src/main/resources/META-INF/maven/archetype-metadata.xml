@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<archetype-descriptor xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd" name="skeleton-parent"
+<archetype-descriptor xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd" name="${rootArtifactId}-parent"
     xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <fileSets>
@@ -24,7 +24,7 @@
     </fileSet>
   </fileSets>
   <modules>
-    <module id="skeleton-module" dir="skeleton-module" name="skeleton-module">
+    <module id="${rootArtifactId}-module" dir="__rootArtifactId__-module" name="${rootArtifactId}-module">
       <fileSets>
         <fileSet filtered="true" encoding="UTF-8">
           <directory>src/main/resources</directory>
@@ -58,7 +58,7 @@
         </fileSet>
       </fileSets>
     </module>
-    <module id="skeleton-webapp" dir="skeleton-webapp" name="skeleton-webapp">
+    <module id="${rootArtifactId}-webapp" dir="__rootArtifactId__-webapp" name="${rootArtifactId}-webapp">
       <fileSets>
         <fileSet filtered="true" encoding="UTF-8">
           <directory>src/main/tomcat</directory>
@@ -87,7 +87,7 @@
         </fileSet>
       </fileSets>
     </module>
-    <module id="skeleton-cli" dir="skeleton-cli" name="skeleton-cli">
+    <module id="${rootArtifactId}-cli" dir="__rootArtifactId__-cli" name="${rootArtifactId}-cli">
       <fileSets>
         <fileSet filtered="true" encoding="UTF-8">
           <directory>src/main/config</directory>

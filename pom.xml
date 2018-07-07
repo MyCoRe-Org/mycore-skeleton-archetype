@@ -3,11 +3,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>org.mycore.skeleton</groupId>
-  <artifactId>skeleton-parent-archetype</artifactId>
+  <artifactId>mycore-skeleton-archetype</artifactId>
   <version>2017.07-SNAPSHOT</version>
   <packaging>maven-archetype</packaging>
 
-  <name>skeleton-parent-archetype</name>
+  <name>mycore-skeleton-archetype</name>
 
   <build>
     <extensions>
