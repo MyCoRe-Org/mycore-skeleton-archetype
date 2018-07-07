@@ -9,7 +9,7 @@
   </parent>
   <artifactId>${artifactId}</artifactId>
   <packaging>war</packaging>
-  <name>Skeleton: WebApp</name>
+  <name>${projectName}: WebApp</name>
   <description>Web application that bundles are part in a single artifact</description>
   <properties>
     <MCR.AppName>skeleton</MCR.AppName>

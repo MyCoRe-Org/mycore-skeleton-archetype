@@ -8,7 +8,7 @@
   </parent>
   <artifactId>${artifactId}</artifactId>
   <packaging>pom</packaging>
-  <name>Skeleton: Command Line Interface</name>
+  <name>${projectName}: Command Line Interface</name>
   <description>ZIP package ready to run MyCoRe commands from shell</description>
   <properties>
     <MCR.AppName>skeleton</MCR.AppName>

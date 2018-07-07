@@ -10,8 +10,8 @@
   <artifactId>${artifactId}</artifactId>
   <version>${version}</version>
   <packaging>pom</packaging>
-  <name>Skeleton</name>
-  <description>A skeleton to start with new mycore application development</description>
+  <name>${projectName}</name>
+  <description>The main Maven Project for ${projectName}</description>
   <inceptionYear>2015</inceptionYear>
   <prerequisites>
     <maven>3.2.2</maven>

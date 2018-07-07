@@ -6,7 +6,7 @@
     <groupId>${groupId}</groupId>
     <version>${version}</version>
   </parent>
-  <name>Skeleton: Application Module</name>
+  <name>${projectName}: Application Module</name>
   <artifactId>${artifactId}</artifactId>
   <description>Contains all files and classes for a MyCoRe Application</description>
   <properties>
