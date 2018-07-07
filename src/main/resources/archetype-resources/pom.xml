@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.mycore</groupId>
     <artifactId>mycore-parent</artifactId>
-    <version>33-SNAPSHOT</version>
+    <version>37</version>
   </parent>
   <groupId>${groupId}</groupId>
   <artifactId>${artifactId}</artifactId>
@@ -23,7 +23,7 @@
     <hibernate.version>5.2.2.Final</hibernate.version>
     <java.target.version>1.8</java.target.version>
     <jetty.version>9.3.14.v20161028</jetty.version>
-    <mycore.version>2017.07-SNAPSHOT</mycore.version>
+    <mycore.version>2018.06.0-SNAPSHOT</mycore.version>
   </properties>
   <scm>
     <connection>scm:svn:http://server.mycore.de/svn/maven/skeleton/trunk</connection>
@@ -185,7 +185,8 @@
       </plugin>
     </plugins>
   </build>
-  <repositories>
+    <repositories>
+    <!-- central is required for bibsonomy not to take over every artifact -->
     <repository>
       <snapshots>
         <enabled>false</enabled>
@@ -195,52 +196,37 @@
       <url>https://repo.maven.apache.org/maven2</url>
     </repository>
     <repository>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <id>MyCoRe HQ</id>
-      <url>http://artifactory.mycore.de/mycore-releases</url>
-    </repository>
-    <repository>
       <releases>
         <enabled>false</enabled>
       </releases>
       <snapshots>
+        <enabled>true</enabled>
       </snapshots>
-      <id>MyCoRe HQ Snapshots</id>
-      <url>http://artifactory.mycore.de/mycore-snapshots</url>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+    </repository>
+    <repository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>dev.bibsonomy.org</id>
+      <name>Official Source Code Releases of selected BibSonomy Modules</name>
+      <url>http://dev.bibsonomy.org/maven2/</url>
     </repository>
   </repositories>
   <pluginRepositories>
     <pluginRepository>
       <releases>
-        <updatePolicy>never</updatePolicy>
-      </releases>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <id>central</id>
-      <name>Central Repository</name>
-      <url>https://repo.maven.apache.org/maven2</url>
-    </pluginRepository>
-    <pluginRepository>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <id>MyCoRe HQ</id>
-      <url>http://artifactory.mycore.de/mycore-releases</url>
-    </pluginRepository>
-    <pluginRepository>
-      <releases>
         <enabled>false</enabled>
       </releases>
       <snapshots>
+        <enabled>true</enabled>
       </snapshots>
-      <id>MyCoRe HQ Snapshots</id>
-      <url>http://artifactory.mycore.de/mycore-snapshots</url>
+      <id>ossrh</id>
+      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
     </pluginRepository>
   </pluginRepositories>
-  <profiles>
+   <profiles>
     <profile>
       <id>release-profile</id>
       <properties>
@@ -323,29 +309,5 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-  <developers>
-    <developer>
-      <id>mcrkrebs</id>
-      <name>Kathleen Neumann</name>
-      <organization>Verbundzentrale des GBV (VZG), Document Management System</organization>
-      <email>Kathleen.Neumann (at) gbv.de</email>
-      <organizationUrl>http://www.gbv.de</organizationUrl>
-      <timezone>+1</timezone>
-      <roles>
-        <role>coordination</role>
-        <role>developer</role>
-      </roles>
-    </developer>
-    <developer>
-      <id>mcrsteph</id>
-      <name>Robert Stephan</name>
-      <organization>Universität Rostock, Universitätsbibliothek</organization>
-      <email>robert.stephan (at) uni-rostock.de</email>
-      <organizationUrl>http://www.ub.uni-rostock.de/ub/</organizationUrl>
-      <timezone>+1</timezone>
-      <roles>
-        <role>developer</role>
-      </roles>
-    </developer>
-  </developers>
+  
 </project>
