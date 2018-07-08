@@ -35,7 +35,7 @@ public class ShowMCRObjectsWithFilesServlet extends HttpServlet {
 		pw.println("    <title>${projectName}: MyCoRe Objekte mit Dateianhang (Derivaten)</title>");
 		pw.println("  </head>");
 		pw.println("  <body>");
-		pw.println("    <h2>>${projectName}: MyCoRe Objekte mit Dateianhang (Derivaten)</h2>");
+		pw.println("    <h2>${projectName}: MyCoRe Objekte mit Dateianhang (Derivaten)</h2>");
 		outputData(pw);
 		pw.println("  </body>");
 		pw.println("</html>");
