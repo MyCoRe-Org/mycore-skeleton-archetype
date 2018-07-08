@@ -6,6 +6,9 @@
       <requiredProperty key="projectName">
         <defaultValue>Skeleton</defaultValue>
       </requiredProperty>
+      <requiredProperty key="mcrSolrMainCoreName">
+        <defaultValue>skeleton</defaultValue>
+      </requiredProperty>
   </requiredProperties>
   <fileSets>
     <fileSet encoding="UTF-8">
@@ -37,6 +40,7 @@
             <include>**/*.xml</include>
             <include>**/*.html</include>
             <include>**/*.properties</include>
+            <include>**/*.json</include>
           </includes>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
@@ -45,13 +49,19 @@
             <include>**/*.xml</include>
           </includes>
         </fileSet>
-        <fileSet encoding="UTF-8">
+        <fileSet filtered="true" encoding="UTF-8">
           <directory>src/main/resources</directory>
           <includes>
             <include>**/*.xsl</include>
+             <include>**/*.xed</include>
+          </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+          <!-- unfiltered (no $placeholder replacement) -->
+          <directory>src/main/resources</directory>
+          <includes>
             <include>**/*.css</include>
             <include>**/*.scss</include>
-            <include>**/*.xed</include>
             <include>**/*.png</include>
           </includes>
         </fileSet>

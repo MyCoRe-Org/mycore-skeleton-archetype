@@ -7,7 +7,7 @@
   <xsl:template match="mycoreobject">
     <xsl:apply-imports />
 
-    <field name="hasFiles">
+    <field name="${rootArtifactId}.hasFiles">
       <xsl:value-of select="count(structure/derobjects/derobject)&gt;0" />
     </field>
   </xsl:template>

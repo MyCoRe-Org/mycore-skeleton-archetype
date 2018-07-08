@@ -1,0 +1,7 @@
+[  {
+    "add-field": {
+      "name": "${rootArtifactId}.hasFiles",
+      "type": "boolean"
+    }
+  }
+]
