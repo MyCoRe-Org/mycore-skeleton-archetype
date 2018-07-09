@@ -1,4 +1,4 @@
-Einrichten einer NEUEN MyCoRe Anwendung mittels maven-skeleton-archetype
+Einrichten einer NEUEN MyCoRe Anwendung <br>via maven-skeleton-archetype
 ========================================================================
 
 ### Projektverzeichnis erstellen
