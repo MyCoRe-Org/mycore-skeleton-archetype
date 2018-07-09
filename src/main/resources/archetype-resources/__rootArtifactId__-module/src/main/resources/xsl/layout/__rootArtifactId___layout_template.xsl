@@ -145,7 +145,7 @@
       <div style="font-size:200%;margin:6px" id="project_logo_box">
         <a href="{concat($WebApplicationBaseURL,substring($loaded_navigation_xml/@hrefStartingPage,2),$HttpSession)}">
           <img style="height:40px;margin-right:10px" alt="Skeleton" src="{$WebApplicationBaseURL}content/images/skeleton.png" />
-          MyCoRe Skeleton
+          ${projectName} (based on MyCoRe Skeleton)
       </a>
       </div>
       </div>
@@ -157,12 +157,7 @@
         <div class="navbar-header">
           <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".main-nav-entries">
             <span class="sr-only"> Toggle navigation </span>
-            <span class="icon-bar">
-            </span>
-            <span class="icon-bar">
-            </span>
-            <span class="icon-bar">
-            </span>
+            <i class="fa fa-bars" aria-hidden="true"></i>
           </button>
         </div>
 
