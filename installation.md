@@ -15,14 +15,15 @@ mvn clean install
 
 MyCoRe Application Projekt erstellen
 =====================================
-> mvn archetype:generate -DarchetypeGroupId=org.mycore.skeleton -DarchetypeArtifactId=mycore-skeleton-archetype -DarchetypeVersion=2018.06.0-SNAPSHOT
->> groupId: org.myinstition.apps.skeleton
->> artifactId: skeleton
->> version: 1.0-SNAPSHOT (default)
->> package: org.myinstition.apps.skeleton (default)
->> mcrSolrMainCoreName: skeleton
->> projectName: My New Skeleton App
-
+```
+mvn archetype:generate -DarchetypeGroupId=org.mycore.skeleton -DarchetypeArtifactId=mycore-skeleton-archetype -DarchetypeVersion=2018.06.0-SNAPSHOT
+| groupId: org.myinstition.apps.skeleton
+| artifactId: skeleton
+| version: 1.0-SNAPSHOT (default)
+| package: org.myinstition.apps.skeleton (default)
+| mcrSolrMainCoreName: skeleton
+| projectName: My New Skeleton App
+```
 Anwendung bauen
 ================
 > cd skeleton
