@@ -6,8 +6,8 @@
     <artifactId>${rootArtifactId}</artifactId>
     <version>${version}</version>
   </parent>
-  <name>${projectName}: Application Module</name>
   <artifactId>${artifactId}</artifactId>
+  <name>${projectName}: Application Module</name>
   <description>Contains all files and classes for a MyCoRe Application</description>
   <properties>
     <grunt.projectBase>${project.build.directory}/grunt</grunt.projectBase>
