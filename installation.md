@@ -1,10 +1,11 @@
-Projektverzeichnis erstellen
-============================
+Einrichten einer NEUEN MyCoRe Anwendung mittels maven-skeleton-archetype
+========================================================================
+
+### Projektverzeichnis erstellen
 ```
 > mkdir C:\Temp\skeleton2018
 ```
-MyCore Skeleton Maven Archetype installieren
-============================================
+### MyCore Skeleton Maven Archetype installieren
 ```
 > cd C:\Temp\skeleton2018
 > git clone https://github.com/MyCoRe-Org/mycore-skeleton-archetype.git
@@ -13,8 +14,7 @@ MyCore Skeleton Maven Archetype installieren
 ```
 - Check local archetype catalog: `${USER_HOME}/.m2/repository/archetype-catalog.xml`
 
-MyCoRe Application Projekt erstellen
-=====================================
+### MyCoRe Application Projekt erstellen
 ```
 > mvn archetype:generate -DarchetypeGroupId=org.mycore.skeleton -DarchetypeArtifactId=mycore-skeleton-archetype -DarchetypeVersion=2018.06.0-SNAPSHOT
 Parameter:
@@ -25,51 +25,44 @@ Parameter:
 | mcrSolrMainCoreName: skeleton
 | projectName        : My New Skeleton App
 ```
-Anwendung bauen
-================
+
+### Anwendung bauen
 ```
 > cd skeleton
 > mvn clean install
 ```
-CLI-Entpacken
-=============
+
+### CLI-Entpacken
 ```
 > cd ..
 > PowerShell Expand-Archive -Path skeleton\skeleton-cli\target\skeleton-cli-1.0-SNAPSHOT.zip -DestinationPath .
 > cd skeleton-cli-1.0-SNAPSHOT
 ```
 
-Konfigurationsverzeichnis erstellen
-===================================
+### Konfigurationsverzeichnis erstellen
 ```
 > bin\skeleton.bat create configuration directory
 ```
 
-Datenbankinstallation
-======================
+### Datenbankinstallation
+#### Datenbanktreiber herunterladen (z.B. H2)
 
-Datenbanktreiber herunterladen (z.B. H2)
-----------------------------------------
 ```
 > cd C:\Users\mcradmin\AppData\Local\MyCoRe\skeleton
 > cd lib
 > PowerShell Invoke-WebRequest -Uri http://repo2.maven.org/maven2/com/h2database/h2/1.4.197/h2-1.4.197.jar -OutFile h2-1.4.197.jar
 ```
-Datenbank konfigurieren (z.B. H2)
------------------------ 
+#### Datenbank konfigurieren (z.B. H2)
 in resources\META-INF\persistence.xml Datenbank konfigurieren
 ```
 <property name="javax.persistence.jdbc.url" value="jdbc:h2:file:c:\Users\mcradmin\AppData\Local\MyCoRe\skeleton\data\h2\mycore;AUTO_SERVER=TRUE" />
 ```
-Solr7
-=====
-Installation nach Anleitung
----------------------------
+### Solr7
+#### Installation nach Anleitung
 gem. http://www.mycore.de/documentation/getting_started/solr_7.html
 installieren und starten
 
-Solr7 Konfiguration
--------------------
+#### Solr7 Konfiguration
 ```
 > cd c:\workspaces\SOLR\solr-7.3.1
 > cd server\solr\configsets
@@ -89,10 +82,8 @@ oder explizit in `${MYCORE_HOME}\skeleton\mycore.properties`setzen
 ```
 Core Prüfen http://localhost:8983/solr/#/~cores
 
-Anwendung in Tomcat deployen
-=============================
-Tomcat installieren und starten
--------------------------------
+### Anwendung in Tomcat deployen
+#### Tomcat installieren und starten
 ```
 > cd C:\Temp\skeleton2018
 > PowerShell Invoke-WebRequest -Uri http://mirror.netcologne.de/apache.org/tomcat/tomcat-8/v8.5.32/bin/apache-tomcat-8.5.32-windows-x64.zip -OutFile apache-tomcat-8.5.32-windows-x64.zip
@@ -102,8 +93,11 @@ Tomcat installieren und starten
 
 > cd..\webapps
 > copy ..\..\skeleton\skeleton-webapp\target\skeleton-1.0-SNAPSHOT.war skeleton.war
+
 ```
+
+### Webanwendung starten
 Ausprobieren: http://localhost:8080/skeleton/
 
-später: http://localhost:8080/skeleton/show-objects-with-files
+bzw. http://localhost:8080/skeleton/show-objects-with-files
 
