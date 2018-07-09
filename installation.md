@@ -1,15 +1,17 @@
 Projektverzeichnis erstellen
 ============================
->mkdir C:\Temp\skeleton2018
-
+```
+mkdir C:\Temp\skeleton2018
+```
 MyCore Skeleton Maven Archetype installieren
 ============================================
->cd C:\Temp\skeleton2018
->git clone https://github.com/MyCoRe-Org/mycore-skeleton-archetype.git
-> cd mycore-skeleton-archetype 
-> mvn clean install
-- Check local archetype catalog: ${USER_HOME}/.m2/repository/archetype-catalog.xml
-
+```
+cd C:\Temp\skeleton2018
+git clone https://github.com/MyCoRe-Org/mycore-skeleton-archetype.git
+cd mycore-skeleton-archetype 
+mvn clean install
+```
+- Check local archetype catalog: `${USER_HOME}/.m2/repository/archetype-catalog.xml`
 
 MyCoRe Application Projekt erstellen
 =====================================
