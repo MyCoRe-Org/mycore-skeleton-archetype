@@ -71,13 +71,13 @@ installieren und starten
 ```
 cd ..\..\...
 bin\solr start
-bin\solr create -c my_core_name -d mycore_main
+bin\solr create -c skeleton -d mycore_main
 ```
 Properties prüfen in skeleton-module\src\main\resources\config\skeleton\mycore.properties
 oder explizit in `${MYCORE_HOME}\skeleton\mycore.properties`setzen
 ```
 | MCR.Solr.ServerURL=http://localhost:8983/
-| MCR.Solr.Core.main.Name=my_core_name
+| MCR.Solr.Core.main.Name=skeleton
 | MCR.Solr.Core.main.ServerURL=%MCR.Solr.ServerURL%
 ```
 Core Prüfen http://localhost:8983/solr/#/~cores
