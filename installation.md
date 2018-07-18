@@ -1,5 +1,9 @@
 Einrichten einer NEUEN MyCoRe Anwendung <br>via maven-skeleton-archetype
 ========================================================================
+### Benötigte Tools
+- Java (mit gesetzter Umgebungsvariable JAVA_HOME)
+- Maven
+- Git
 
 ### Projektverzeichnis erstellen
 ```
@@ -82,6 +86,12 @@ oder explizit in `${MYCORE_HOME}\skeleton\mycore.properties`setzen
 ```
 Core Prüfen http://localhost:8983/solr/#/~cores
 
+### Daten initialisieren
+```
+> cd C:\Temp\skeleton2018
+> cd skeleton-cli-0.0.1-SNAPSHOT
+> bin\skeleton.bat process config\setup-commands.txt
+```
 ### Anwendung in Tomcat deployen
 #### Tomcat installieren und starten
 ```
@@ -90,13 +100,14 @@ Core Prüfen http://localhost:8983/solr/#/~cores
 > PowerShell Expand-Archive -Path apache-tomcat-8.5.32-windows-x64.zip -DestinationPath .
 > cd C:\Temp\skeleton2018\apache-tomcat-8.5.32\bin
 > startup.bat
-
+```
+#### Anwendung deployen
+```
 > cd..\webapps
 > copy ..\..\skeleton\skeleton-webapp\target\skeleton-1.0-SNAPSHOT.war skeleton.war
-
 ```
 
-### Webanwendung starten
+### Webanwendung öffnen
 Ausprobieren: http://localhost:8080/skeleton/
 
 bzw. http://localhost:8080/skeleton/show-objects-with-files
