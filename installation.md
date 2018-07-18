@@ -88,7 +88,7 @@ Core Prüfen http://localhost:8983/solr/#/~cores
 > cd C:\Temp\skeleton2018
 > PowerShell Invoke-WebRequest -Uri http://mirror.netcologne.de/apache.org/tomcat/tomcat-8/v8.5.32/bin/apache-tomcat-8.5.32-windows-x64.zip -OutFile apache-tomcat-8.5.32-windows-x64.zip
 > PowerShell Expand-Archive -Path apache-tomcat-8.5.32-windows-x64.zip -DestinationPath .
-> cd C:\Temp\skeleton2018\apache-tomcat-8.5.32\bin>
+> cd C:\Temp\skeleton2018\apache-tomcat-8.5.32\bin
 > startup.bat
 
 > cd..\webapps
