@@ -20,6 +20,7 @@ Einrichten einer NEUEN MyCoRe Anwendung <br>via maven-skeleton-archetype
 
 ### MyCoRe Application Projekt erstellen
 ```
+> cd ..
 > mvn archetype:generate -DarchetypeGroupId=org.mycore.skeleton -DarchetypeArtifactId=mycore-skeleton-archetype -DarchetypeVersion=2018.06.0-SNAPSHOT
 Parameter:
 | groupId      : org.myinstition.apps.skeleton
