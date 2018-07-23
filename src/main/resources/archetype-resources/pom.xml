@@ -209,6 +209,16 @@
       <snapshots>
         <enabled>false</enabled>
       </snapshots>
+      <id>MyCoRe HQ</id>
+      <url>http://artifactory.mycore.de/mycore-releases</url>
+    </repository>
+    <!-- PKIX error when downloading from bibsonomy repo:
+         PKIX path building failed: sun.security.provider.certpath.SunCertPathBuilderException: 
+         unable to find valid certification path to requested target  ? -->
+    <repository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
       <id>dev.bibsonomy.org</id>
       <name>Official Source Code Releases of selected BibSonomy Modules</name>
       <url>http://dev.bibsonomy.org/maven2/</url>
