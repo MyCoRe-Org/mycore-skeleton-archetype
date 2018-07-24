@@ -90,7 +90,7 @@ Core Prüfen http://localhost:8983/solr/#/~cores
 ### Daten initialisieren
 ```
 > cd C:\Temp\skeleton2018
-> cd skeleton-cli-0.0.1-SNAPSHOT
+> cd skeleton-cli-1.0-SNAPSHOT
 > bin\skeleton.bat process config\setup-commands.txt
 ```
 ### Anwendung in Tomcat deployen
