@@ -13,16 +13,10 @@
     </requiredProperty>
   </requiredProperties>
   <fileSets>
-    <fileSet encoding="UTF-8">
-      <directory>.settings</directory>
-      <includes>
-        <include>**/*.prefs</include>
-      </includes>
-    </fileSet>
     <fileSet filtered="true" encoding="UTF-8">
       <directory></directory>
       <includes>
-        <include>.project</include>
+        <include>license-header.txt</include>
         <include>LICENSE.txt</include>
       </includes>
     </fileSet>
