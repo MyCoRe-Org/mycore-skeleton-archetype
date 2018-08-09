@@ -20,11 +20,14 @@
     <changelog.since>2017-01-25</changelog.since>
     <!-- until snapshot matches released version (required for 'mvn changes:changes-check') -->
     <changes.version>2017.01</changes.version>
-    <hibernate.version>5.2.2.Final</hibernate.version>
+    <hibernate.version>5.2.10.Final</hibernate.version>
     <java.target.version>1.8</java.target.version>
-    <jetty.version>9.3.14.v20161028</jetty.version>
+    <jetty.version>9.4.10.v20180503</jetty.version>
     <mycore.version>2018.06.0-SNAPSHOT</mycore.version>
+    <solr-runner.solrMirrorURL>http://mirror.23media.de/apache/lucene/solr/</solr-runner.solrMirrorURL>
+    <solr-runner.solrVersionString>7.4.0</solr-runner.solrVersionString>
   </properties>
+  <!-- TODO: change to git? or leave this empty -->
   <scm>
     <connection>scm:svn:http://server.mycore.de/svn/maven/skeleton/trunk</connection>
     <developerConnection>scm:svn:https://server.mycore.de/svn/maven/skeleton/trunk</developerConnection>
@@ -162,6 +165,15 @@
             </lifecycleMappingMetadata>
           </configuration>
         </plugin>
+        <plugin>
+          <groupId>org.mycore.plugins</groupId>
+          <artifactId>solr-runner-maven-plugin</artifactId>
+          <version>1.0</version>
+          <configuration>
+            <solrMirrorURL>${solr-runner.solrMirrorURL}</solrMirrorURL>
+            <solrVersionString>${solr-runner.solrVersionString}</solrVersionString>
+          </configuration>
+        </plugin>
       </plugins>
     </pluginManagement>
     <plugins>
@@ -186,15 +198,6 @@
     </plugins>
   </build>
   <repositories>
-    <!-- central is required for bibsonomy not to take over every artifact -->
-    <repository>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <id>central</id>
-      <name>Central Repository</name>
-      <url>https://repo.maven.apache.org/maven2</url>
-    </repository>
     <repository>
       <releases>
         <enabled>false</enabled>
@@ -204,14 +207,6 @@
       </snapshots>
       <id>ossrh</id>
       <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    </repository>
-    <repository>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <id>dev.bibsonomy.org</id>
-      <name>Official Source Code Releases of selected BibSonomy Modules</name>
-      <url>https://dev.bibsonomy.org/maven2/</url>
     </repository>
   </repositories>
   <pluginRepositories>
@@ -224,22 +219,6 @@
       </snapshots>
       <id>ossrh</id>
       <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    </pluginRepository>
-     <pluginRepository>
-      <snapshots>
-        <enabled>false</enabled>
-      </snapshots>
-      <id>MyCoRe HQ</id>
-      <url>http://artifactory.mycore.de/mycore-releases</url>
-    </pluginRepository>
-    <pluginRepository>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-      <snapshots>
-      </snapshots>
-      <id>MyCoRe HQ Snapshots</id>
-      <url>http://artifactory.mycore.de/mycore-snapshots</url>
     </pluginRepository>
   </pluginRepositories>
    <profiles>
@@ -292,6 +271,7 @@
           </exclusion>
         </exclusions>
       </dependency>
+      <!-- TODO: why do we need this dependency here? -->
       <dependency>
         <groupId>org.mycore</groupId>
         <artifactId>mycore-solr</artifactId>

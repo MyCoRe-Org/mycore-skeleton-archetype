@@ -97,6 +97,19 @@
           </includes>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
+          <directory>src/main/solr</directory>
+          <includes>
+            <include>**/*.properties</include>
+          </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+          <!-- unfiltered (no $placeholder replacement) -->
+          <directory>src/main/solr</directory>
+          <includes>
+            <include>solr.xml</include>
+          </includes>
+        </fileSet>
+        <fileSet filtered="true" encoding="UTF-8">
           <directory></directory>
           <includes>
             <include>LICENSE.txt</include>

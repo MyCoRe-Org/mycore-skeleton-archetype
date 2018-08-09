@@ -23,6 +23,7 @@
         </includes>
       </resource>
       <resource>
+        <filtering>false</filtering>
         <directory>src/main/resources/</directory>
         <includes>
           <include>**/*</include>
@@ -58,7 +59,7 @@
       <plugin>
         <groupId>org.mycore.plugins</groupId>
         <artifactId>datamodel-plugin</artifactId>
-        <version>0.5</version>
+        <version>0.7-SNAPSHOT</version>
         <executions>
           <execution>
             <goals>
@@ -85,7 +86,6 @@
     <dependency>
       <groupId>javax.servlet</groupId>
       <artifactId>javax.servlet-api</artifactId>
-      <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>junit</groupId>
@@ -133,12 +133,12 @@
     <dependency>
       <groupId>org.webjars</groupId>
       <artifactId>jquery</artifactId>
-      <version>1.11.3</version>
+      <version>3.1.1</version>
     </dependency>
     <dependency>
       <groupId>org.webjars</groupId>
       <artifactId>jquery-migrate</artifactId>
-      <version>1.2.1</version>
+      <version>1.4.1</version>
     </dependency>
 
     <!-- replace this with the settings of the JDBC driver for your database -->

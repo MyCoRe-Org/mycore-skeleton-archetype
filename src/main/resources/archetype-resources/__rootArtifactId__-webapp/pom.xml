@@ -12,7 +12,9 @@
   <description>Web application that bundles are part in a single artifact</description>
   <properties>
     <MCR.AppName>${rootArtifactId}</MCR.AppName>
-    <solr.location>${${rootArtifactId}.solr.data.dir}</solr.location>
+    <solr.coreName>${rootArtifactId}</solr.coreName>
+    <solr.data.dir>${${rootArtifactId}.solr.data.dir}</solr.data.dir>
+    <solr.home>${${rootArtifactId}.solr.home}</solr.home>
   </properties>
   <build>
     <finalName>${rootArtifactId}-${project.version}</finalName>
@@ -36,7 +38,7 @@
       <plugin>
         <groupId>org.eclipse.jetty</groupId>
         <artifactId>jetty-maven-plugin</artifactId>
-        <version>9.4.3.v20170317</version>
+        <version>${jetty.version}</version>
         <configuration>
           <scanIntervalSeconds>3</scanIntervalSeconds>
           <systemProperties>
@@ -57,26 +59,11 @@
         </configuration>
       </plugin>
       <plugin>
-        <groupId>de.vzg.maven</groupId>
+        <groupId>org.mycore.plugins</groupId>
         <artifactId>solr-runner-maven-plugin</artifactId>
-        <version>1.0-SNAPSHOT</version>
-        <dependencies>
-          <dependency>
-              <groupId>org.mycore.solr</groupId>
-            <artifactId>mycore-solr-plugin</artifactId>
-            <version>0.2</version>
-          </dependency>
-        </dependencies>
         <configuration>
-          <solrHome>${solr.location}</solrHome>
-          <solrPort>8983</solrPort>
-          <solrHomeTemplate>${project.basedir}/src/main/solrHome</solrHomeTemplate>
-          <pluginCoreMappings>
-            <pluginCoreMapping>
-              <core>${rootArtifactId}</core>
-              <plugin>org.mycore.solr:mycore-solr-plugin</plugin>
-            </pluginCoreMapping>
-          </pluginCoreMappings>
+          <solrHomeTemplate>src/main/solr</solrHomeTemplate>
+          <solrHome>${${rootArtifactId}.solr.home}</solrHome>
         </configuration>
       </plugin>
     </plugins>
@@ -104,7 +91,7 @@
       <build>
         <plugins>
           <plugin>
-            <groupId>de.vzg.maven</groupId>
+            <groupId>org.mycore</groupId>
             <artifactId>solr-runner-maven-plugin</artifactId>
             <executions>
               <execution>
