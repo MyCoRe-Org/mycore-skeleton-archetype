@@ -21,7 +21,7 @@ Einrichten einer NEUEN MyCoRe Anwendung <br>via maven-skeleton-archetype
 ### MyCoRe Application Projekt erstellen
 ```
 > cd ..
-> mvn archetype:generate -DarchetypeGroupId=org.mycore.skeleton -DarchetypeArtifactId=mycore-skeleton-archetype -DarchetypeVersion=2018.06.0-SNAPSHOT
+> mvn archetype:generate -DarchetypeGroupId=org.mycore.skeleton -DarchetypeArtifactId=mycore-skeleton-archetype -DarchetypeVersion=2018.06.0.2-SNAPSHOT
 Parameter:
 | groupId      : org.myinstition.apps.skeleton
 | artifactId   : skeleton
@@ -69,7 +69,7 @@ installieren und starten
 
 #### Solr7 Konfiguration
 ```
-> cd c:\workspaces\SOLR\solr-7.3.1
+> cd c:\workspaces\SOLR\solr-7.5.0
 > cd server\solr\configsets
 > git clone https://github.com/MyCoRe-Org/mycore_solr_configset_main.git mycore_main
 ```
@@ -97,9 +97,9 @@ Core Prüfen http://localhost:8983/solr/#/~cores
 #### Tomcat installieren und starten
 ```
 > cd C:\Temp\skeleton2018
-> PowerShell Invoke-WebRequest -Uri http://mirror.netcologne.de/apache.org/tomcat/tomcat-8/v8.5.32/bin/apache-tomcat-8.5.32-windows-x64.zip -OutFile apache-tomcat-8.5.32-windows-x64.zip
-> PowerShell Expand-Archive -Path apache-tomcat-8.5.32-windows-x64.zip -DestinationPath .
-> cd C:\Temp\skeleton2018\apache-tomcat-8.5.32\bin
+> PowerShell Invoke-WebRequest -Uri http://mirror.netcologne.de/apache.org/tomcat/tomcat-8/v8.5.35/bin/apache-tomcat-8.5.35-windows-x64.zip -OutFile apache-tomcat-8.5.35-windows-x64.zip
+> PowerShell Expand-Archive -Path apache-tomcat-8.5.35-windows-x64.zip -DestinationPath .
+> cd C:\Temp\skeleton2018\apache-tomcat-8.5.35\bin
 > startup.bat
 ```
 #### Anwendung deployen
