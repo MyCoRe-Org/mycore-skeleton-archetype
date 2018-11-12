@@ -1,7 +1,12 @@
-[  {
-    "add-field": {
+[ {"add-field": {
       "name": "${rootArtifactId}.hasFiles",
       "type": "boolean"
+    }
+  },
+  {"add-field": {
+      "name": "${rootArtifactId}.title",
+      "type": "text_general",
+      "stored": true
     }
   }
 ]

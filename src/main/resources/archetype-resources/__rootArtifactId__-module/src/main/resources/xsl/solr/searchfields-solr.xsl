@@ -10,6 +10,9 @@
     <field name="${rootArtifactId}.hasFiles">
       <xsl:value-of select="count(structure/derobjects/derobject)&gt;0" />
     </field>
+    <field name="${rootArtifactId}.title">
+      <xsl:value-of select="metadata/def.title/title" />
+    </field>
   </xsl:template>
 
 </xsl:stylesheet>

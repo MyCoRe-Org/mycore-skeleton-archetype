@@ -73,70 +73,31 @@
       <xsl:value-of select="concat($href, '&amp;start=',$startPosition, '&amp;fl=id&amp;rows=1&amp;origrows=', $rows, '&amp;XSL.Style=browse')" />
     </xsl:variable>
 
-<!-- hit entry -->
+	<!-- hit entry -->
     <div class="row list-group-item {$hitItemClass}">
       <div class="col-md-1">
         <xsl:value-of select="$hitNumberOnPage" />
       </div>
       <div class="col-md-9">
-
-        <dl class="dl-horizontal">
-
-<!-- hit title and link to git -->
-          <dt>Objekt-Link:</dt>
+	    <xsl:if test="./arr[@name='${rootArtifactId}.title']/str[1]">
+			<h4 style="margin-top:0px"><xsl:value-of select="./arr[@name='${rootArtifactId}.title']/str[1]" /></h4>
+		</xsl:if>
+		<dl class="dl-horizontal">
+          <dt><xsl:value-of select="i18n:translate('search.response.link')" /></dt>
           <dd>
             <a href="{$hitHref}">
-              <!-- show title if searchfield "title" is defined -->
-              <xsl:attribute name="title"><xsl:value-of select="./str[@name='title']" /></xsl:attribute>
-              <xsl:choose>
-                <xsl:when test="./str[@name='search_result_link_text']">
-                  <xsl:value-of select="./str[@name='search_result_link_text']" />
-                </xsl:when>
-                <xsl:when test="./str[@name='fileName']">
-                  <xsl:value-of select="./str[@name='fileName']" />
-                </xsl:when>
-                <xsl:otherwise>
-                  <xsl:value-of select="$identifier" />
-                  </xsl:otherwise>
-                </xsl:choose>
-              </a>
-            </dd>
-
-<!-- hit parent -->
-          <xsl:if test="./str[@name='parent']">
-            <dt>aus:</dt>
-            <dd>
-             <xsl:choose>
-               <xsl:when test="./str[@name='parentLinkText']">
-                 <xsl:variable name="linkTo" select="concat($WebApplicationBaseURL, 'receive/',./str[@name='parent'])" />
-                 <a href="{$linkTo}">
-                   <xsl:value-of select="./str[@name='parentLinkText']" />
-                 </a>
-               </xsl:when>
-               <xsl:otherwise>
-                 <xsl:call-template name="objectLink">
-                   <xsl:with-param select="./str[@name='parent']" name="obj_id" />
-                   </xsl:call-template>
-                 </xsl:otherwise>
-               </xsl:choose>
-             </dd>
-            </xsl:if>
-
-<!-- creation date -->
-          <dt>Erstellt am:</dt>
+              <!-- show score as title attribute-->
+              <xsl:attribute name="title"><xsl:value-of select="concat(i18n:translate('search.response.score'),' ', ./float[@name='score'])" /></xsl:attribute>
+              <xsl:value-of select="$identifier" />
+            </a>
+          </dd>
+          <dt><xsl:value-of select="i18n:translate('search.response.created')" /></dt>
           <dd>
-            <xsl:value-of select="./date[@name='created']" />
-            </dd>
-
-<!-- user who has created this document -->
-          <dt>von:</dt>
-          <dd>
-            <xsl:value-of select="./str[@name='createdby']" />
+			<!-- creation date and creator -->
+            <xsl:value-of select="concat(./date[@name='created'], ' ', i18n:translate('search.response.created.by'),' ', ./str[@name='createdby'])" />
           </dd>
         </dl>
       </div>
-
     </div><!-- end hit item -->
   </xsl:template>
-
 </xsl:stylesheet>
