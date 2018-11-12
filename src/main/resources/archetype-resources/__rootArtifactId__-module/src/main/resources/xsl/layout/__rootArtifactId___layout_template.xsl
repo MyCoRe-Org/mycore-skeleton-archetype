@@ -33,9 +33,8 @@
         </xsl:comment>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <link href="{$WebApplicationBaseURL}css/fileupload.css" rel="stylesheet" />
         <link href="{$WebApplicationBaseURL}webjars/font-awesome/{$fontawesome.version}/css/font-awesome.min.css" rel="stylesheet" />
-        <link href="{$WebApplicationBaseURL}rsc/sass/bootstrap-skeleton.css" rel="stylesheet" />
+        <link href="{$WebApplicationBaseURL}rsc/sass/bootstrap-${rootArtifactId}.css" rel="stylesheet" />
         <script type="text/javascript" src="{$WebApplicationBaseURL}webjars/jquery/{$jquery.version}/jquery.min.js"></script>
         <script type="text/javascript" src="{$WebApplicationBaseURL}webjars/jquery-migrate/{$jquery.migrate.version}/jquery-migrate.min.js"></script>
 
