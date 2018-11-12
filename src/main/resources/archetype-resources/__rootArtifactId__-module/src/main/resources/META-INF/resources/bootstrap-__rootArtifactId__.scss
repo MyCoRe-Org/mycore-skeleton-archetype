@@ -1,3 +1,9 @@
 @import "webjars/bootstrap-sass/3.3.7/stylesheets/_bootstrap.scss";
 
-derivate-label.xed
+.file-upload-box{
+	border:1px solid black;
+}
+.dragover {
+  background-color:LightBlue ;
+  color:white;  
+}
