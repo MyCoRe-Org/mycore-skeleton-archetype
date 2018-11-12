@@ -69,7 +69,7 @@ installieren und starten
 
 #### Solr7 Konfiguration
 ```
-> cd c:\workspaces\SOLR\solr-7.5.0
+> cd \SOLR\solr-7.5.0
 > cd server\solr\configsets
 > git clone https://github.com/MyCoRe-Org/mycore_solr_configset_main.git mycore_main
 ```
