@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.mycore</groupId>
     <artifactId>mycore-parent</artifactId>
-    <version>37</version>
+    <version>41</version>
   </parent>
   <groupId>${groupId}</groupId>
   <artifactId>${artifactId}</artifactId>
@@ -12,7 +12,7 @@
   <packaging>pom</packaging>
   <name>${projectName}</name>
   <description>The main Maven Project for ${projectName}</description>
-  <inceptionYear>2015</inceptionYear>
+  <inceptionYear>2019</inceptionYear>
   <prerequisites>
     <maven>3.2.2</maven>
   </prerequisites>
@@ -22,15 +22,15 @@
     <hibernate.version>5.2.14.Final</hibernate.version>
     <java.target.version>1.8</java.target.version>
     <jetty.version>9.4.10.v20180503</jetty.version>
-    <mycore.version>2018.06.0.2-SNAPSHOT</mycore.version>
+    <mycore.version>2019.06.2-SNAPSHOT</mycore.version>
     <solr-runner.solrMirrorURL>http://mirror.23media.de/apache/lucene/solr/</solr-runner.solrMirrorURL>
     <solr-runner.solrVersionString>7.4.0</solr-runner.solrVersionString>
   </properties>
-  <!-- TODO: change to git? or leave this empty -->
+  <!-- put your Git or SVN URLs here -->
   <scm>
-    <connection>scm:svn:http://server.mycore.de/svn/maven/skeleton/trunk</connection>
-    <developerConnection>scm:svn:https://server.mycore.de/svn/maven/skeleton/trunk</developerConnection>
-    <url>http://www.mycore.de/viewvc/viewvc.cgi/maven/skeleton/trunk</url>
+    <connection>scm:git:http://***</connection>
+    <developerConnection>scm:git:https://***</developerConnection>
+    <url>http://***</url>
   </scm>
   <build>
     <pluginManagement>
@@ -245,37 +245,6 @@
         <artifactId>jsass</artifactId>
         <version>4.1.0</version>
       </dependency>
-      <dependency>
-        <groupId>org.mycore</groupId>
-        <artifactId>mycore-base</artifactId>
-        <version>${mycore.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>org.mycore</groupId>
-        <artifactId>mycore-meta</artifactId>
-        <version>${mycore.version}</version>
-        <type>pom</type>
-        <exclusions>
-          <exclusion>
-            <groupId>org.mycore</groupId>
-            <artifactId>mycore-broadcasting</artifactId>
-          </exclusion>
-          <exclusion>
-            <groupId>org.mycore</groupId>
-            <artifactId>mycore-coma</artifactId>
-          </exclusion>
-          <exclusion>
-            <groupId>org.apache.maven.scm</groupId>
-            <artifactId>maven-scm-provider-svnexe</artifactId>
-          </exclusion>
-        </exclusions>
-      </dependency>
-      <!-- TODO: why do we need this dependency here? -->
-      <dependency>
-        <groupId>org.mycore</groupId>
-        <artifactId>mycore-solr</artifactId>
-        <version>${mycore.version}</version>
-      </dependency>
       <!-- https://mvnrepository.com/artifact/com.mchange/c3p0 -->
       <dependency>
         <groupId>com.mchange</groupId>
@@ -292,7 +261,7 @@
       <dependency>
         <groupId>com.h2database</groupId>
         <artifactId>h2</artifactId>
-        <version>1.4.197</version>
+        <version>1.4.200</version>
         <scope>test</scope>
       </dependency>
       <dependency>
