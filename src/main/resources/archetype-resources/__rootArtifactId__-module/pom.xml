@@ -10,6 +10,8 @@
   <name>${projectName}: Application Module</name>
   <description>Contains all files and classes for a MyCoRe Application</description>
   <properties>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
     <grunt.projectBase>${project.build.directory}/grunt</grunt.projectBase>
     <template.assetsdir>${project.build.directory}/classes/META-INF/resources/assets</template.assetsdir>
   </properties>
@@ -46,14 +48,6 @@
               <Priority>50</Priority>
             </manifestEntries>
           </archive>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <artifactId>maven-compiler-plugin</artifactId>
-        <configuration>
-          <source>1.8</source>
-          <target>1.8</target>
         </configuration>
       </plugin>
       <plugin>

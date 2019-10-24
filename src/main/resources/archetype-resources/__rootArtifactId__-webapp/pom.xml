@@ -58,6 +58,10 @@
       <artifactId>${rootArtifactId}-module</artifactId>
       <version>${project.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.mycore</groupId>
+      <artifactId>mycore-sass</artifactId>
+    </dependency>
   </dependencies>
   <profiles>
     <profile>

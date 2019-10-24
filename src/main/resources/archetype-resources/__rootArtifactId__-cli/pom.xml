@@ -72,6 +72,29 @@
           </execution>
         </executions>
       </plugin>
+      <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <configuration>
+            <outputDirectory>${project.build.directory}/appassembler</outputDirectory>
+            <resources>
+              <resource>
+                <filtering>true</filtering>
+                <directory>src/main</directory>
+                <includes>
+                  <include>config/**</include>
+                </includes>
+              </resource>
+            </resources>
+          </configuration>
+          <executions>
+            <execution>
+              <goals>
+                <goal>copy-resources</goal>
+              </goals>
+              <phase>package</phase>
+            </execution>
+          </executions>
+        </plugin>
     </plugins>
   </build>
   <dependencies>
@@ -101,21 +124,6 @@
       <build>
         <defaultGoal>resources:copy-resources exec:exec</defaultGoal>
         <plugins>
-          <plugin>
-            <artifactId>maven-resources-plugin</artifactId>
-            <configuration>
-              <outputDirectory>${project.build.directory}/appassembler</outputDirectory>
-              <resources>
-                <resource>
-                  <filtering>true</filtering>
-                  <directory>${basedir}/src/main</directory>
-                  <includes>
-                    <include>config/**</include>
-                  </includes>
-                </resource>
-              </resources>
-            </configuration>
-          </plugin>
           <plugin>
             <groupId>org.codehaus.mojo</groupId>
             <artifactId>exec-maven-plugin</artifactId>
