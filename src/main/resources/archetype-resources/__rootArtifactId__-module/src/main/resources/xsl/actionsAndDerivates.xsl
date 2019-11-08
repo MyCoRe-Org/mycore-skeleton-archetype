@@ -65,7 +65,9 @@
   
       <script>
         $(document).ready(function() {
-            mycore.upload.enable(document.querySelector(".file-upload-box").parentElement);
+            $('.file-upload-box').each(function(index, element) {
+                mycore.upload.enable(element.parentElement);
+            });
             $('.file-upload-box').on('show.bs.collapse', function() {
                 var current = this;
                 $('.file-upload-box').each(function(index, element) {
