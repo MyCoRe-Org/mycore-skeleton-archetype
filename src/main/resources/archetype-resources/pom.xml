@@ -17,14 +17,12 @@
     <maven>3.2.2</maven>
   </prerequisites>
   <properties>
-    <changelog.since>2017-01-25</changelog.since>
+    <changelog.since>2019-11-07</changelog.since>
     <!-- until snapshot matches released version (required for 'mvn changes:changes-check') -->
     <hibernate.version>5.2.14.Final</hibernate.version>
     <java.target.version>11</java.target.version>
-    <jetty.version>9.4.10.v20180503</jetty.version>
+    <jetty.version>9.4.20.v20190813</jetty.version>
     <mycore.version>2019.06.2-SNAPSHOT</mycore.version>
-    <solr-runner.solrMirrorURL>http://mirror.23media.de/apache/lucene/solr/</solr-runner.solrMirrorURL>
-    <solr-runner.solrVersionString>7.4.0</solr-runner.solrVersionString>
   </properties>
   <!-- put your Git or SVN URLs here -->
   <scm>
@@ -162,15 +160,6 @@
                 </pluginExecution>
               </pluginExecutions>
             </lifecycleMappingMetadata>
-          </configuration>
-        </plugin>
-        <plugin>
-          <groupId>org.mycore.plugins</groupId>
-          <artifactId>solr-runner-maven-plugin</artifactId>
-          <version>1.0</version>
-          <configuration>
-            <solrMirrorURL>${solr-runner.solrMirrorURL}</solrMirrorURL>
-            <solrVersionString>${solr-runner.solrVersionString}</solrVersionString>
           </configuration>
         </plugin>
       </plugins>

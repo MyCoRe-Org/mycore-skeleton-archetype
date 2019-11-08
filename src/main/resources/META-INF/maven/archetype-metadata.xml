@@ -56,6 +56,7 @@
           <includes>
             <include>**/*.xsl</include>
             <include>**/*.xed</include>
+            <include>**/*.scss</include>
           </includes>
         </fileSet>
         <fileSet encoding="UTF-8">
@@ -63,7 +64,6 @@
           <directory>src/main/resources</directory>
           <includes>
             <include>**/*.css</include>
-            <include>**/*.scss</include>
             <include>**/*.png</include>
           </includes>
         </fileSet>
