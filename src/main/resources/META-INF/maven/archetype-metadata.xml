@@ -37,15 +37,6 @@
           </includes>
         </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
-          <directory>src/main/resources</directory>
-          <includes>
-            <include>**/*.xml</include>
-            <include>**/*.html</include>
-            <include>**/*.properties</include>
-            <include>**/*.json</include>
-          </includes>
-        </fileSet>
-        <fileSet filtered="true" encoding="UTF-8">
           <directory>src/main/datamodel</directory>
           <includes>
             <include>**/*.xml</include>
@@ -54,6 +45,10 @@
         <fileSet filtered="true" encoding="UTF-8">
           <directory>src/main/resources</directory>
           <includes>
+            <include>**/*.xml</include>
+            <include>**/*.html</include>
+            <include>**/*.properties</include>
+            <include>**/*.json</include>
             <include>**/*.xsl</include>
             <include>**/*.xed</include>
             <include>**/*.scss</include>
@@ -77,6 +72,13 @@
     </module>
     <module id="${rootArtifactId}-webapp" dir="__rootArtifactId__-webapp" name="${rootArtifactId}-webapp">
       <fileSets>
+        <fileSet encoding="UTF-8">
+          <directory>src/etc</directory>
+          <includes>
+            <include>**/*.properties</include>
+            <include>**/*.xml</include>
+          </includes>
+        </fileSet>
         <fileSet filtered="true" encoding="UTF-8">
           <directory>src/main/tomcat</directory>
           <includes>
