@@ -1,4 +1,3 @@
-# mycore-skeleton-archetype
-A Maven archetype for MyCoRe Skeleton Project
+# MyCoRe Skeleton Archetype
 
-see [Installation](installation.md) on how to create a new MyCoRe application
+[Docs](https://www.mycore.de/documentation/getting_started/gs_ma_install/)
