@@ -12,7 +12,7 @@ Einrichten einer NEUEN MyCoRe Anwendung <br>via maven-skeleton-archetype
 ### MyCore Skeleton Maven Archetype installieren
 ```
 > cd C:\Temp\skeleton2018
-> git clone https://github.com/MyCoRe-Org/mycore-skeleton-archetype.git
+> git clone https://github.com/MyCoRe-Org/mycore-skeleton-archetype.git --recursive
 > cd mycore-skeleton-archetype 
 > mvn clean install
 ```
