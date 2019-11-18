@@ -17,24 +17,26 @@
         </xed:bind>
 
         <xed:bind xpath="conditions[@format='xml']/boolean[@operator='and']">
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">
-                <xed:output i18n="component.mods.editor.search.label" />
+          <div class="card">
+            <div class="card-header">
+              <h3>
+                <xed:output i18n="search.simple.label" />
               </h3>
             </div>
-            <div class="panel-body">
+            <div class="card-body">
       <!-- search in all metadata -->
-              <div class="form-group">
-                <label class="col-md-3 control-label" for="inputMeta">
+              <div class="form-group row">
+                <label class="col-md-3" for="inputMeta">
                   <xed:output i18n="editor.search.metadata" />
                 </label>
                 <div class="col-md-9">
                   <div class="input-group">
                     <xed:bind xpath="condition0[@field='allMeta'][@operator='contains']/@value" default="*">
                       <input id="inputMeta" class="form-control" placeholder="in den Metadaten" type="text" />
-                      <span data-toggle="tooltip" class="input-group-addon" title="Suchfeld für alle bibliografischen Angaben">
-                        <i class="fa fa-info"></i>
+                      <span data-toggle="tooltip" class="input-group-append" title="Suchfeld für alle bibliografischen Angaben">
+                        <span class="input-group-text">
+                          <i class="fas fa-info"></i>
+                        </span>
                       </span>
                     </xed:bind>
                   </div>
@@ -42,16 +44,18 @@
               </div>
 
         <!-- search in derivate content -->
-              <div class="form-group">
-                <label class="col-md-3 control-label" for="inputContent">
+              <div class="form-group row">
+                <label class="col-md-3" for="inputContent">
                   <xed:output i18n="editor.search.derivate" />
                 </label>
                 <div class="col-md-9">
                   <div class="input-group">
                     <xed:bind xpath="condition1[@field='content'][@operator='contains']/@value">
                       <input id="inputContent" class="form-control" placeholder="in den Dateien" type="text" />
-                      <span data-toggle="tooltip" class="input-group-addon" title="Suchfeld für den Inhalt von Dateien">
-                        <i class="fa fa-info"></i>
+                      <span data-toggle="tooltip" class="input-group-append" title="Suchfeld für den Inhalt von Dateien">
+                        <span class="input-group-text">
+                          <i class="fas fa-info"></i>
+                        </span>
                       </span>
                     </xed:bind>
                   </div>
@@ -59,10 +63,12 @@
               </div>
 
         <!-- submit -->
-              <div class="col-md-offset-3 col-md-9">
-                <button type="submit" xed:target="servlet_MCRQLSearchServlet" class="btn btn-primary">
-                  <xed:output i18n="editor.search.search" />
-                </button>
+              <div class="row">
+                <div class="offset-9 col-md-3">
+                  <button type="submit" xed:target="servlet_MCRQLSearchServlet" class="btn btn-primary float-right">
+                    <xed:output i18n="editor.search.search" />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
