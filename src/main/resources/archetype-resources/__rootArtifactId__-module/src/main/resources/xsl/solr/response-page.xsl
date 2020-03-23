@@ -23,7 +23,7 @@
     </xsl:variable>
 
     <div class="row result_head">
-      <div class="col-xs-12 result_headline">
+      <div class="col-12 result_headline">
         <h1><small>
           <xsl:choose>
             <xsl:when test="$hits=0">

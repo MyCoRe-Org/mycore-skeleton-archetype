@@ -217,6 +217,11 @@
   <dependencyManagement>
     <dependencies>
       <dependency>
+        <groupId>${project.groupId}</groupId>
+        <artifactId>${rootArtifactId}-module</artifactId>
+        <version>${project.version}</version>
+      </dependency>
+      <dependency>
         <groupId>com.yahoo.platform.yui</groupId>
         <artifactId>yuicompressor</artifactId>
         <version>2.4.8</version>
@@ -256,6 +261,26 @@
         <version>${mycore.version}</version>
         <type>test-jar</type>
         <scope>test</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>bootstrap</artifactId>
+        <version>4.3.1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>font-awesome</artifactId>
+        <version>5.10.1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>jquery</artifactId>
+        <version>3.1.1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>jquery-migrate</artifactId>
+        <version>1.4.1</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

@@ -24,9 +24,7 @@
 .file_box .header .headline .title .file_toggle .caret {
   margin-left:6px
 }
-.file_box .header .headline .options .dropdown-menu>li>a:hover {
-  background-color:#f39c12
-}
+
 .file_box .header .headline .options .btn {
   border:0 solid transparent;
   margin-right:0;
@@ -36,30 +34,17 @@
   font-size:12px;
   line-height:1.5
 }
-.file_box .header .headline .options .btn:hover {
-  color:#4b8fbc;
-  background-color:transparent
-}
+
 .file_box .header .headline .options .caret {
   margin-left:6px
 }
-.file_box .header .headline .options .open>.dropdown-toggle {
-  color:#f39c12;
-  background-color:transparent
-}
+
 .file_box .header .headline .options .open>.dropdown-toggle .btn-default {
   background-color:transparent
 }
-.file_box .header .headline .options .open>.dropdown-toggle:hover {
-  color:#4b8fbc
-}
-.file_box .header .headline .options .option {
-  color:#95a5a6;
-  background-color:transparent
-}
-.file_box .header .headline .options .option:hover {
-  color:white
-}
+
+
+
 .file_box .header .headline .options .option .glyphicon {
   margin-right:5px
 }
@@ -87,9 +72,7 @@
 .file_box .body .file_set.active_file>.glyphicon-star {
   color:#6eba6b
 }
-.file_box .body .file_set .options .dropdown-menu>li>a:hover {
-  background-color:#f39c12
-}
+
 .file_box .body .file_set .options .btn {
   margin-right:0;
   padding:2px 10px;
@@ -100,29 +83,15 @@
   border-top-right-radius:0;
   color:#95a5a6
 }
-.file_box .body .file_set .options .btn:hover {
-  color:#4b8fbc;
-  background-color:transparent
-}
 .file_box .body .file_set .options .caret {
   margin-left:6px
-}
-.file_box .body .file_set .options .open>.dropdown-toggle {
-  color:#f39c12;
-  background-color:transparent
 }
 .file_box .body .file_set .options .open>.dropdown-toggle .btn-default {
   background-color:transparent
 }
-.file_box .body .file_set .options .open>.dropdown-toggle:hover {
-  color:#4b8fbc
-}
 .file_box .body .file_set .options .option {
   color:#95a5a6;
   background-color:transparent
-}
-.file_box .body .file_set .options .option:hover {
-  color:white
 }
 .file_box .body .file_set .options .option .glyphicon {
   margin-right:5px

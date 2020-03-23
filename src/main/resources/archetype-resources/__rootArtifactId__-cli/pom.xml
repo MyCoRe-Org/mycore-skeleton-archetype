@@ -105,7 +105,6 @@
     <dependency>
       <groupId>${project.parent.groupId}</groupId>
       <artifactId>${rootArtifactId}-module</artifactId>
-      <version>${project.parent.version}</version>
       <scope>runtime</scope>
     </dependency>
     <dependency>
@@ -115,33 +114,4 @@
       <scope>runtime</scope>
     </dependency>
   </dependencies>
-  <profiles>
-    <profile>
-      <id>dev-cli</id>
-      <properties>
-        <MCR.DataPrefix>dev</MCR.DataPrefix>
-      </properties>
-      <build>
-        <defaultGoal>resources:copy-resources exec:exec</defaultGoal>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>exec-maven-plugin</artifactId>
-            <configuration>
-              <executable>java</executable>
-              <arguments>
-                <argument>-Djava.awt.headless=true</argument>
-                <argument>-DMCR.AppName=${MCR.AppName}</argument>
-                <argument>-DMCR.DataPrefix=${MCR.DataPrefix}</argument>
-                <argument>-Dapp.home=${project.build.directory}${file.separator}appassembler</argument>
-                <argument>-classpath</argument>
-                <classpath />
-                <argument>org.mycore.frontend.cli.MCRCommandLineInterface</argument>
-              </arguments>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
 </project>
