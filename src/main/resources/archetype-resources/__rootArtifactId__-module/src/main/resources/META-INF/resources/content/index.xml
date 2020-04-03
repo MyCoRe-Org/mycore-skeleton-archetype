@@ -18,20 +18,20 @@
       </div>
     </div>
     <div class="row">
-        <div class="col-md-4">
-            <h3><span class="fa fa-check-square-o"></span> fertig</h3>
+        <div class="col-4">
+            <h3><span class="far fa-check-square"></span> bereit</h3>
             <p>At vero eos et accusam et justo duo dolores et ea rebum.
             Stet clita kasd gubergren, no sea takimata sanctus est
             Lorem ipsum dolor sit amet.</p>
         </div>
-        <div class="col-md-4">
-            <h3><span class="fa fa-bolt"></span> mächtig</h3>
+        <div class="col-4">
+            <h3><span class="fas fa-bolt"></span> mächtig</h3>
             <p>At vero eos et accusam et justo duo dolores et ea rebum.
             Stet clita kasd gubergren, no sea takimata sanctus est
             Lorem ipsum dolor sit amet.</p>
         </div>
-        <div class="col-md-4">
-            <h3><span class="fa fa-heart"></span> lebendig</h3>
+        <div class="col-4">
+            <h3><span class="fas fa-heart"></span> lebendig</h3>
             <p>At vero eos et accusam et justo duo dolores et ea rebum.
             Stet clita kasd gubergren, no sea takimata sanctus est
             Lorem ipsum dolor sit amet.</p>
