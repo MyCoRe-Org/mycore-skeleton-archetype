@@ -4,7 +4,7 @@
   <parent>
     <groupId>org.mycore</groupId>
     <artifactId>mycore-parent</artifactId>
-    <version>41</version>
+    <version>42</version>
   </parent>
   <groupId>${groupId}</groupId>
   <artifactId>${artifactId}</artifactId>
@@ -19,7 +19,7 @@
     <hibernate.version>5.2.14.Final</hibernate.version>
     <java.target.version>11</java.target.version>
     <jetty.version>9.4.20.v20190813</jetty.version>
-    <mycore.version>2019.06.3-SNAPSHOT</mycore.version>
+    <mycore.version>2019.06.4-SNAPSHOT</mycore.version>
   </properties>
   <!-- put your Git or SVN URLs here -->
   <scm>

@@ -10,7 +10,7 @@
 
   <groupId>org.mycore.skeleton</groupId>
   <artifactId>mycore-skeleton-archetype</artifactId>
-  <version>2019.06.3-SNAPSHOT</version>
+  <version>2019.06.4-SNAPSHOT</version>
   <packaging>maven-archetype</packaging>
 
   <issueManagement>
