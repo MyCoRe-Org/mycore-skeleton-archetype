@@ -67,7 +67,7 @@
           <div class="container">
             <div class="row">
               <div class="col-12 col-sm-6 col-md-4">
-                <h4>Über uns</h4>
+                <h5>Über uns</h5>
                 <p>
                   Lorem ipsum dolor sit amet, consetetur sadipscing
                   elitr, sed diam nonumy eirmod tempor invidunt ut
@@ -78,13 +78,13 @@
                 </p>
               </div>
               <div class="col-6 col-sm-3 col-md-2">
-                <h4>Navigation</h4>
+                <h5>Navigation</h5>
                 <ul class="nav internal_links">
                   <xsl:apply-templates select="$loaded_navigation_xml/menu[@id='brand']/*"/>
                 </ul>
               </div>
               <div class="col-6 col-sm-3 col-md-2">
-                <h4>Netzwerke</h4>
+                <h5>Netzwerke</h5>
                 <ul class="nav social_links">
                   <li class="nav-link">
                     <a class="nav-item" href="#"><span class="fab fa-facebook"></span> Facebook
@@ -101,7 +101,7 @@
                 </ul>
               </div>
               <div class="col-6 col-sm-3 col-md-2">
-                <h4>Layout based on</h4>
+                <h5>Layout based on</h5>
                 <ul class="nav internal_links">
                   <li>
                     <a href="http://getbootstrap.com/">Bootstrap</a>
