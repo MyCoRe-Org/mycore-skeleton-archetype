@@ -4,6 +4,7 @@
 update all classifications from directory ${symbol_dollar}{app.home}/config/classifications
 update classification from url http://www.mycore.org/classifications/state.xml
 update classification from url http://www.mycore.org/classifications/mcr-roles.xml
+update classification from url http://mycore.de/classifications/derivate_types.xml
 init superuser
 process ${symbol_dollar}{app.home}/config/acl/defaultrules-commands.txt
 process ${symbol_dollar}{app.home}/config/acl/webacl-commands.txt
