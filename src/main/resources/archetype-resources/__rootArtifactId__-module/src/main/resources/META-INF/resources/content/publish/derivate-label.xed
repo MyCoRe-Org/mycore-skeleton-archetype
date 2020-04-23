@@ -40,6 +40,23 @@
             </div>
           </xed:bind>
         </xed:bind>
+        <xed:bind xpath="classifications[@class='MCRMetaClassification']/classification[@classid='derivate_types']/@categid">
+          <div class="form-group {$xed-validation-marker}">
+            <label class="col-md-4 control-label" for="title">
+              <xed:output i18n="editor.derivate.label.classification"/>
+            </label>
+            <div class="col-md-6">
+              <select>
+ 			    <option value=""><xed:output i18n="editor.derivate.please.select"/></option>
+  			    <xed:include uri="xslStyle:items2options:classification:editor:-1:children:derivate_types" />
+			  </select>
+            </div>
+            <xed:validate display="here" required="true">
+              <xed:output i18n="editor.derivate.validate.label"/>
+            </xed:validate>
+          </div>
+        </xed:bind>
+        
         <xed:bind xpath="/mycorederivate/service"/>
 
         <div class="form-group">
