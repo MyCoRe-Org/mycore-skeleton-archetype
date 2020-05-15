@@ -46,7 +46,7 @@
               <xed:output i18n="editor.derivate.label.classification"/>
             </label>
             <div class="col-md-6">
-              <select>
+              <select class="form-control">
  			    <option value=""><xed:output i18n="editor.derivate.please.select"/></option>
   			    <xed:include uri="xslStyle:items2options:classification:editor:-1:children:derivate_types" />
 			  </select>
