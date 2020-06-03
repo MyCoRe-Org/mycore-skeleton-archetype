@@ -71,7 +71,7 @@
               </xed:bind>
 
             <!-- Select Language -->
-              <xed:bind xpath="def.language[@class='MCRMetaClassification']/language[@classid='rfc4646']/@categid">
+              <xed:bind xpath="def.language[@class='MCRMetaClassification']/language[@classid='rfc5646']/@categid">
                 <div class="form-group row {$xed-validation-marker}">
                   <label class="col-md-4 control-label" for="language">
                     <xed:output i18n="editor.label.language" />
@@ -81,7 +81,7 @@
                       <option value="">
                         <xed:output i18n="editor.common.select" />
                       </option>
-                      <xed:include uri="xslStyle:items2options:classification:editor:-1:children:rfc4646" />
+                      <xed:include uri="xslStyle:items2options:classification:editor:-1:children:rfc5646" />
                     </select>
                   </div>
                   <xed:validate display="here" required="true">
