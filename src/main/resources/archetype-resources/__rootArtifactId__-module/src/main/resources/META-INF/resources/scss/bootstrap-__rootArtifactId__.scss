@@ -5,5 +5,5 @@
 // current stable bootstrap version
 @import "../webjars/bootstrap/4.3.1/scss/bootstrap";
 
-// cmo specific styles
+// ${rootArtifactId} specific styles
 @import "${rootArtifactId}/base";
