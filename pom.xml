@@ -82,5 +82,32 @@
     <developerConnection>scm:git:https://github.com/MyCoRe-Org/mycore-skeleton-archetype.git</developerConnection>
     <url>https://github.com/MyCoRe-Org/mycore-skeleton-archetype</url>
   </scm>
-
+  <profiles>
+    <profile>
+      <id>deploy-to-central</id>
+      <activation>
+        <property>
+          <name>!deploy-to-artifactory</name>
+        </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.sonatype.plugins</groupId>
+            <artifactId>nexus-staging-maven-plugin</artifactId>
+          </plugin>
+        </plugins>
+      </build>
+      <distributionManagement>
+        <repository>
+          <id>ossrh</id>
+          <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+        <snapshotRepository>
+          <id>ossrh</id>
+          <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+      </distributionManagement>
+    </profile>
+  </profiles>
 </project>
