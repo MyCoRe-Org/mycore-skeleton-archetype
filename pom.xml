@@ -5,20 +5,20 @@
   <parent>
     <artifactId>mycore-parent</artifactId>
     <groupId>org.mycore</groupId>
-    <version>43</version>
+    <version>44</version>
   </parent>
 
   <groupId>org.mycore.skeleton</groupId>
   <artifactId>mycore-skeleton-archetype</artifactId>
-  <version>2020.05-SNAPSHOT</version>
+  <version>2020.06.0-SNAPSHOT</version>
   <packaging>maven-archetype</packaging>
 
+  <name>mycore-skeleton-archetype</name>
+  
   <issueManagement>
     <system>GitHub</system>
     <url>https://github.com/MyCoRe-Org/mycore-skeleton-archetype/issues</url>
   </issueManagement>
-
-  <name>mycore-skeleton-archetype</name>
 
   <build>
     <extensions>
