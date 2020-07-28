@@ -9,13 +9,13 @@
       <defaultValue /> <!-- e.g. 'Skeleton' -->
     </requiredProperty>
     <requiredProperty key="organizationName">
-      <defaultValue /> <!-- e.g. 'Skeleton' -->
+      <defaultValue /> <!-- e.g. 'Skeleton Cooperation' -->
     </requiredProperty>
     <requiredProperty key="mcrSolrMainCoreName">
-      <defaultValue /> <!-- e.g. 'skeleton' -->
+      <defaultValue /> <!-- e.g. 'skeleton_main' -->
     </requiredProperty>
     <requiredProperty key="mcrSolrClassCoreName">
-      <defaultValue /> <!-- e.g. 'skeleton' -->
+      <defaultValue /> <!-- e.g. 'skeleton_class' -->
     </requiredProperty>
   </requiredProperties>
   <fileSets>
