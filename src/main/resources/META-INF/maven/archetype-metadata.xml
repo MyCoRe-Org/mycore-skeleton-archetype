@@ -8,6 +8,9 @@
     <requiredProperty key="projectName">
       <defaultValue /> <!-- e.g. 'Skeleton' -->
     </requiredProperty>
+    <requiredProperty key="organizationName">
+      <defaultValue /> <!-- e.g. 'Skeleton' -->
+    </requiredProperty>
     <requiredProperty key="mcrSolrMainCoreName">
       <defaultValue /> <!-- e.g. 'skeleton' -->
     </requiredProperty>
