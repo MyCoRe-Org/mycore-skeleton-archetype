@@ -155,7 +155,7 @@
         <a href="{concat($WebApplicationBaseURL,substring($loaded_navigation_xml/@hrefStartingPage,2),$HttpSession)}">
           <img style="height:40px;margin-right:10px" alt="Skeleton"
                src="{$WebApplicationBaseURL}content/images/skeleton.png"/>
-          ${projectName} (based on MyCoRe Skeleton)
+          ${projectName} (created by <a href="https://github.com/MyCoRe-Org/mycore-skeleton-archetype">mycore-skeleton-archetype</a>)
         </a>
       </div>
     </div>
