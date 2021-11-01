@@ -14,6 +14,7 @@
   <packaging>maven-archetype</packaging>
 
   <name>mycore-skeleton-archetype</name>
+  <description>A skeleton to start development of a new MyCoRe application</description>
   
   <issueManagement>
     <system>GitHub</system>
@@ -38,8 +39,6 @@
       </plugins>
     </pluginManagement>
   </build>
-
-  <description>A skeleton to start with new mycore application development</description>
 
   <url>http://www.mycore.org/generated/skeleton-parent</url>
 
