@@ -10,7 +10,7 @@
 
   <groupId>org.mycore.skeleton</groupId>
   <artifactId>mycore-skeleton-archetype</artifactId>
-  <version>2022.06.2-SNAPSHOT</version>
+  <version>2022.06-SNAPSHOT</version>
   <packaging>maven-archetype</packaging>
 
   <name>mycore-skeleton-archetype</name>
@@ -26,7 +26,7 @@
       <extension>
         <groupId>org.apache.maven.archetype</groupId>
         <artifactId>archetype-packaging</artifactId>
-        <version>3.1.2</version>
+        <version>3.2.1</version>
       </extension>
     </extensions>
 
@@ -34,13 +34,11 @@
       <plugins>
         <plugin>
           <artifactId>maven-archetype-plugin</artifactId>
-          <version>3.1.2</version>
+          <version>3.2.1</version>
         </plugin>
       </plugins>
     </pluginManagement>
   </build>
-
-  <url>http://www.mycore.org/generated/skeleton-parent</url>
 
   <developers>
     <developer>
