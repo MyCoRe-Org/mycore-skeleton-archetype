@@ -19,7 +19,7 @@
     <maven.compiler.target>17</maven.compiler.target>
     <maven.compiler.source>17</maven.compiler.source>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <jetty.version>11.0.08</jetty.version>
+    <jetty.version>11.0.15</jetty.version>
     <mycore.version>2022.06.2-SNAPSHOT</mycore.version>
   </properties>
   <!-- put your Git or SVN URLs here -->
