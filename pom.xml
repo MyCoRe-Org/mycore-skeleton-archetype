@@ -5,12 +5,12 @@
   <parent>
     <artifactId>mycore-parent</artifactId>
     <groupId>org.mycore</groupId>
-    <version>47</version>
+    <version>51</version>
   </parent>
 
   <groupId>org.mycore.skeleton</groupId>
   <artifactId>mycore-skeleton-archetype</artifactId>
-  <version>2021.06.1-SNAPSHOT</version>
+  <version>2022.06.2-SNAPSHOT</version>
   <packaging>maven-archetype</packaging>
 
   <name>mycore-skeleton-archetype</name>
