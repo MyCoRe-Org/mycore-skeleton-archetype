@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>${groupId}</groupId>
   <artifactId>${artifactId}</artifactId>
@@ -60,9 +61,7 @@
                     <failOnViolation>true</failOnViolation>
                   </requireManagedDeps>
                   <!-- Disabled, https://issues.apache.org/jira/browse/MENFORCER-189 -->
-                  <!--
-                  <reactorModuleConvergence />
-                  -->
+				  <!-- <reactorModuleConvergence /> -->
                   <bannedDependencies>
                     <excludes>
                       <exclude>log4j</exclude>
@@ -104,7 +103,7 @@
           <version>1.7</version>
           <configuration>
             <failOnUnsupportedJava>false</failOnUnsupportedJava>
-            <!-- compile would fail anyway and this is required for MCR-873 -->
+			<!-- compile would fail anyway and this is required for MCR-873 -->
             <failOnMissingClasses>false</failOnMissingClasses>
             <failOnUnresolvableSignatures>false</failOnUnresolvableSignatures>
             <bundledSignatures>
@@ -139,7 +138,7 @@
           <verbose>false</verbose>
           <addSvnKeyWords>true</addSvnKeyWords>
           <licenseName>gpl_v3</licenseName>
-	  <organizationName>${organizationName}</organizationName>  
+          <organizationName>${organizationName}</organizationName>
         </configuration>
         <executions>
           <execution>
@@ -177,7 +176,7 @@
       <url>https://oss.sonatype.org/content/repositories/snapshots</url>
     </pluginRepository>
   </pluginRepositories>
-   <profiles>
+  <profiles>
     <profile>
       <id>release-profile</id>
       <properties>
@@ -262,5 +261,5 @@
       </dependency>
     </dependencies>
   </dependencyManagement>
-  
+
 </project>
