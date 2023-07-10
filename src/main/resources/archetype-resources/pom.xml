@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <!-- There is currently an issue with the Maven Archetype Plugin:
+       It creates additional newlines in the parent pom.xml, as you may see here.
+       (https://issues.apache.org/jira/browse/ARCHETYPE-584)
+       You could reformat the file with an editor like Notepad++ -->
   <modelVersion>4.0.0</modelVersion>
   <groupId>${groupId}</groupId>
   <artifactId>${artifactId}</artifactId>
@@ -28,8 +32,7 @@
     <pluginManagement>
       <plugins>
         <!-- for other plugin versions see:
-             https://github.com/MyCoRe-Org/mycore-parent-pom/blob/v51/pom.xml
-        -->
+             https://github.com/MyCoRe-Org/mycore-parent-pom/blob/v51/pom.xml -->
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
           <version>3.3.0</version>
