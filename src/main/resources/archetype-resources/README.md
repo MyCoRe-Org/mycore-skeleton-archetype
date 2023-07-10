@@ -13,6 +13,7 @@ ${hash}${hash} Installation Instructions
 * configure your database connection in `~/.mycore/${rootArtifactId}/resources/META-INF/persistence.xml`
 * perhaps you need to download a driver to `~/.mycore/${rootArtifactId}/lib/`
 * run cli command `bin/${rootArtifactId}.sh process config/setup-commands.txt to load default data`
+* run cli command `bin/${rootArtifactId}.sh reload mappings in jpa configuration file`
 * Go to ${rootArtifactId}-webapp
 * Install solr with the command: `mvn solr-runner:copyHome`
 * Run solr with the command `mvn solr-runner:start` (End with `mvn solr-runner:stop`)
