@@ -10,3 +10,4 @@ process ${symbol_dollar}{app.home}/config/acl/defaultrules-commands.txt
 process ${symbol_dollar}{app.home}/config/acl/webacl-commands.txt
 
 reload solr configuration main in core main
+reload solr configuration classification in core classification
