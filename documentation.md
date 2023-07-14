@@ -21,15 +21,3 @@ Selbstdefinierte Properties
 ---------------------------
 projectName, mcrSolrMainCoreName
 
- Fragen / Todos
- ------
- x-webapp/pom.xml
- -> dependency zu mir-common-resources - Kann die weg?
- - pom.xml
- 	- Dependencies aufräumen
- 	- Repositories konfigurieren
- 
- - Log4j2 konfiguration
- 
- 
- 

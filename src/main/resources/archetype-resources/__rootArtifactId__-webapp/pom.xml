@@ -13,7 +13,7 @@
   <properties>
     <MCR.AppName>${rootArtifactId}</MCR.AppName>
     <solr.location>${user.home}/.mycore/${rootArtifactId}/data/solr</solr.location>
-    <!-- solr.location>${user.home}/AppData/Local/MyCoRe/dev-${rootArtifactId}/data/solr</solr.location -->
+    <!-- Windows (see <profile> below: ${user.home}/AppData/Local/MyCoRe/dev-${rootArtifactId}/data/solr  -->
     <solr-runner.solrMirrorURL>https://dlcdn.apache.org/lucene/solr/</solr-runner.solrMirrorURL>
     <solr-runner.solrVersionString>8.11.2</solr-runner.solrVersionString>
   </properties>
@@ -91,4 +91,16 @@
       <artifactId>jquery-migrate</artifactId>
     </dependency>
   </dependencies>
+  
+  <profiles>
+    <profile>
+      <activation>
+        <os><family>Windows</family></os>
+      </activation>
+      <properties>
+        <solr.location>${user.home}/AppData/Local/MyCoRe/${rootArtifactId}/data/solr</solr.location>
+      </properties>
+    </profile>
+  </profiles>
+  
 </project>
