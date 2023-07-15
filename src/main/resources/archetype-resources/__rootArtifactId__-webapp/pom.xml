@@ -50,6 +50,22 @@
           <solrMirrorURL>${solr-runner.solrMirrorURL}</solrMirrorURL>
           <solrVersionString>${solr-runner.solrVersionString}</solrVersionString>
         </configuration>
+        <executions>
+          <execution>
+            <id>cs_main</id>
+            <configuration>
+              <configSetName>mycore_main</configSetName>
+              <gitRepository>https://github.com/MyCoRe-Org/mycore_solr_configset_main</gitRepository>
+            </configuration>
+          </execution>
+          <execution>
+            <id>cs_classification</id>
+            <configuration>
+              <configSetName>mycore_classification</configSetName>
+              <gitRepository>https://github.com/MyCoRe-Org/mycore_solr_configset_classification</gitRepository>
+            </configuration>
+          </execution>
+        </executions>
       </plugin>
     </plugins>
   </build>

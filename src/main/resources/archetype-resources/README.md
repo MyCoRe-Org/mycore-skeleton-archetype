@@ -22,8 +22,8 @@ ${hash}${hash}${hash} Configure and run Solr server
 * Change to `${rootArtifactId}-webapp` directory
 * Install and configure solr with the commands: 
   * `mvn solr-runner:copyHome`
-  * `mvn solr-runner:installConfigSet -DconfigSetName=mycore_main -DgitRepository=https://github.com/MyCoRe-Org/mycore_solr_configset_main`
-  * `mvn solr-runner:installConfigSet -DconfigSetName=mycore_classification -DgitRepository=https://github.com/MyCoRe-Org/mycore_solr_configset_classification`
+  * `mvn solr-runner:installConfigSet@cs_main`
+  * `mvn solr-runner:installConfigSet@cs_classification`
 
 * Run solr with the command `mvn solr-runner:start` 
 * (Solr is usually running at: http://localhost:8983/solr/#/)
