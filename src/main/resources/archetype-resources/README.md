@@ -14,7 +14,7 @@ ${hash}${hash}${hash} Build
 ${hash}${hash}${hash} Create / find  the directory with the MyCoRe Commandline interface
 * unpack `${rootArtifactId}-cli/target/${rootArtifactId}-cli.tar` into a user defined CLI directory and change into it
 * OR: use the generated CLI directory in `${rootArtifactId}/${rootArtifactId}-cli/target/appassember`
-* remember that you can start the CLI with `bin\${rootArtifactId}.bat` on Windows and `bin/${rootArtifactId}.sh` on MAC/Linux
+* remember that you can start the CLI with `bin\\${rootArtifactId}.bat` on Windows and `bin/${rootArtifactId}.sh` on MAC/Linux
 * remember taht you can exit the CLI with the command `exit`
 
 
@@ -33,8 +33,11 @@ ${hash}${hash}${hash} Configure the application
 * change into CLI directory and run:
   `bin/${rootArtifactId}.sh create configuration directory`
   * The configuration directory is created in: `~/.mycore/${rootArtifactId}`
+  * (ignore the CLI output `jakarta.persistence.PersistenceException: No Persistence provider for EntityManager named MyCoRe`,
+     because the database will be configured by the next steps)
 * configure your database connection in `~/.mycore/${rootArtifactId}/resources/META-INF/persistence.xml`
   * (for first steps you can use the preconfigured H2 database)
+  * (if you leave the jdbc url unchanged, it will be updated by the next command, pointing to an H2 database file in your data directory)
   * perhaps you need to download a driver to `~/.mycore/${rootArtifactId}/lib/`
 * run cli command `bin/${rootArtifactId}.sh reload mappings in jpa configuration file`
 * configure Solr cores in `~/.mycore/${rootArtifactId}/mycore.properties`
