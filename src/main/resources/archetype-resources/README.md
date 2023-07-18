@@ -58,4 +58,4 @@ ${hash}${hash}${hash} Run web server
 * Change to `${rootArtifactId}-webapp` directory
 * Run Jetty with the command: `mvn jetty:run` (end with `ctrl+c`)
 * Open your browser with: http://localhost:8080/${rootArtifactId}
-* (Fast rebuild and Jetty restart `mvn clean install && cd ${rootArtifactId}-module && mvn jetty:run` (End with ctrl+c))
+* (Fast rebuild and Jetty restart `mvn clean install && cd ${rootArtifactId}-webapp && mvn jetty:run` (End with ctrl+c))
