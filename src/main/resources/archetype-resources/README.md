@@ -13,7 +13,7 @@ ${hash}${hash}${hash} Build
 
 ${hash}${hash}${hash} Create / find  the directory with the MyCoRe Commandline interface
 * unpack `${rootArtifactId}-cli/target/${rootArtifactId}-cli.tar` into a user defined CLI directory and change into it
-* OR: use the generated CLI directory in `${rootArtifactId}/${rootArtifactId}-cli/target/appassember`
+* OR: use the generated CLI directory in `${rootArtifactId}/${rootArtifactId}-cli/target/appassembler`
 * remember that you can start the CLI with `bin\\${rootArtifactId}.bat` on Windows and `bin/${rootArtifactId}.sh` on MAC/Linux
 * remember that you can exit the CLI with the command `exit`
 
