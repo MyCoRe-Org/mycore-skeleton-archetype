@@ -15,7 +15,7 @@ ${hash}${hash}${hash} Create / find  the directory with the MyCoRe Commandline i
 * unpack `${rootArtifactId}-cli/target/${rootArtifactId}-cli.tar` into a user defined CLI directory and change into it
 * OR: use the generated CLI directory in `${rootArtifactId}/${rootArtifactId}-cli/target/appassember`
 * remember that you can start the CLI with `bin\\${rootArtifactId}.bat` on Windows and `bin/${rootArtifactId}.sh` on MAC/Linux
-* remember taht you can exit the CLI with the command `exit`
+* remember that you can exit the CLI with the command `exit`
 
 
 ${hash}${hash}${hash} Configure and run Solr server
