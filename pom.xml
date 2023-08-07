@@ -78,6 +78,7 @@
     <connection>scm:git:http://github.com/MyCoRe-Org/mycore-skeleton-archetype.git</connection>
     <developerConnection>scm:git:https://github.com/MyCoRe-Org/mycore-skeleton-archetype.git</developerConnection>
     <url>https://github.com/MyCoRe-Org/mycore-skeleton-archetype</url>
+    <tag>2022.06.x</tag>
   </scm>
   <profiles>
     <profile>
