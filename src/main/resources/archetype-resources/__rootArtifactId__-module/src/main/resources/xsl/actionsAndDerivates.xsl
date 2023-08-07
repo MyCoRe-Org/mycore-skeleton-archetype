@@ -327,9 +327,8 @@
         </xsl:if>
         <span class="file_size">
           <xsl:text>[ </xsl:text>
-          <xsl:call-template name="formatFileSize">
-            <xsl:with-param name="size" select="size" />
-          </xsl:call-template>
+          <xsl:variable name="s" select="size" />
+          <xsl:value-of xmlns:mcrutil="xalan://org.mycore.common.MCRUtils" select="mcrutil:getSizeFormatted($s)" />
           <xsl:text> ]</xsl:text>
         </span>
 
