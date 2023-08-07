@@ -5,19 +5,23 @@
 <!-- ============================================== -->
 <!-- $Revision: 1.21 $ $Date: 2007-11-12 09:37:14 $ -->
 <!-- ============================================== -->
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xlink="http://www.w3.org/1999/xlink"
-  xmlns:mcr="http://www.mycore.org/" xmlns:acl="xalan://org.mycore.access.MCRAccessManager" xmlns:i18n="xalan://org.mycore.services.i18n.MCRTranslation"
-  xmlns:xalan="http://xml.apache.org/xalan" exclude-result-prefixes="xlink mcr xalan i18n acl">
+<xsl:stylesheet version="3.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xmlns:mcracl="http://www.mycore.de/xslt/acl"
+                xmlns:mcri18n="http://www.mycore.de/xslt/i18n"
+                xmlns:mcr="http://www.mycore.org/"
+                xmlns:mcrurl="http://www.mycore.de/xslt/url"
+                exclude-result-prefixes="xlink mcr mcri18n mcracl">
   &html-output;
-  <xsl:include href="MyCoReLayout.xsl" />
+  <xsl:include href="MyCoReLayout-3.xsl"/>
   <!-- include custom templates for supported objecttypes -->
   <xsl:include href="xslInclude:objectTypes"/>
   <xsl:variable name="PageTitle">
-    <xsl:apply-templates select="/mycoreobject" mode="pageTitle" />
+    <xsl:apply-templates select="/mycoreobject" mode="pageTitle"/>
   </xsl:variable>
-  <xsl:param name="resultListEditorID" />
-  <xsl:param name="numPerPage" />
-  <xsl:param name="page" />
+  <xsl:param name="resultListEditorID"/>
+  <xsl:param name="numPerPage"/>
+  <xsl:param name="page"/>
   <xsl:param name="previousObject" />
   <xsl:param name="previousObjectHost" />
   <xsl:param name="nextObject" />
@@ -28,20 +32,20 @@
     <xsl:apply-templates select="." mode="parent" />
     <xsl:call-template name="resultsub" />
     <xsl:choose>
-      <xsl:when test="acl:checkPermission(/mycoreobject/@ID,'read')">
+      <xsl:when test="mcracl:check-permission(/mycoreobject/@ID,'read')">
         <!-- if access granted: print metadata -->
-        <xsl:apply-templates select="." mode="present" />
+        <xsl:apply-templates select="." mode="present"/>
         <!-- IE Fix for padding and border -->
-        <hr />
+        <hr/>
       </xsl:when>
       <xsl:otherwise>
-        <xsl:value-of select="i18n:translate('metaData.accessDenied')" />
+        <xsl:value-of select="mcri18n:translate('metaData.accessDenied')"/>
       </xsl:otherwise>
     </xsl:choose>
   </xsl:template>
 
   <xsl:template match="/mycoreobject" mode="pageTitle" priority="0">
-    <xsl:value-of select="i18n:translate('metaData.pageTitle')" />
+    <xsl:value-of select="mcri18n:translate('metaData.pageTitle')"/>
   </xsl:template>
 
   <xsl:template match="/mycoreobject" mode="parent" priority="0">
@@ -65,7 +69,7 @@
 
   <xsl:template match="/mycoreobject" mode="present" priority="0">
     <xsl:variable name="objectType" select="substring-before(substring-after(@ID,'_'),'_')" />
-    <xsl:value-of select="i18n:translate('metaData.noTemplate')" />
+    <xsl:value-of select="mcri18n:translate('metaData.noTemplate')"/>
     <form method="get" style="padding:20px;background-color:yellow">
       <fieldset>
         <legend>Automatisches Erzeugen von Vorlagen</legend>
@@ -184,10 +188,20 @@
     <div class="derivateHeading">
       <xsl:choose>
         <xsl:when test="../titles">
-          <xsl:call-template name="printI18N">
-            <xsl:with-param name="nodes" select="../titles/title" />
-            <xsl:with-param name="next" select="'&lt;br /&gt;'" />
-          </xsl:call-template>
+          <xsl:variable name="currentLangNode" select="../titles/title[@xml:lang=$CurrentLang]"/>
+          <xsl:variable name="defaultLangNode" select="../titles/title[@xml:lang=$DefaultLang]"/>
+          <xsl:variable name="firstLangNode" select="../titles/title[1]"/>
+          <xsl:choose>
+            <xsl:when test="count($currentLangNode) = 0">
+              <xsl:value-of select="$currentLangNode[1]"/>
+            </xsl:when>
+            <xsl:when test="count($defaultLangNode) = 0">
+              <xsl:value-of select="$defaultLangNode[1]"/>
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="$firstLangNode[1]"/>
+            </xsl:otherwise>
+          </xsl:choose>
         </xsl:when>
         <xsl:otherwise>
           <xsl:value-of select="$derivlabel" />
@@ -203,11 +217,11 @@
       &#160;kB) &#160;&#160;
       <xsl:variable name="ziplink" select="concat($ServletsBaseURL,'MCRZipServlet',$JSessionID,'?id=',$derivid)" />
       <a class="linkButton" href="{$ziplink}">
-        <xsl:value-of select="i18n:translate('buttons.zipGen')" />
+        <xsl:value-of select="mcri18n:translate('buttons.zipGen')"/>
       </a>
       &#160;
       <a href="{$derivdir}">
-        <xsl:value-of select="i18n:translate('buttons.details')" />
+        <xsl:value-of select="mcri18n:translate('buttons.details')"/>
       </a>
     </div>
   </xsl:template>
@@ -215,7 +229,7 @@
   <!-- External link from Derivate ********************************* -->
   <xsl:template match="externals">
     <div class="derivateHeading">
-      <xsl:value-of select="i18n:translate('metaData.link')" />
+      <xsl:value-of select="mcri18n:translate('metaData.link')"/>
     </div>
     <div class="derivate">
       <xsl:call-template name="webLink">
@@ -233,7 +247,6 @@
     <xsl:variable name="parent">
       <xsl:copy-of select="document(concat('mcrobject:',parent/@xlink:href))/mycoreobject" />
     </xsl:variable>
-    <xsl:variable name="parent" select="xalan:nodeset($parent)" />
     <xsl:choose>
       <xsl:when test="$obj_type = 'this'">
         <xsl:call-template name="objectLink">
@@ -317,11 +330,7 @@
         <li>
           <xsl:if test="@r">
             <xsl:variable name="href">
-              <xsl:call-template name="UrlSetParam">
-                <xsl:with-param name="url" select="$RequestURL" />
-                <xsl:with-param name="par" select="'r'" />
-                <xsl:with-param name="value" select="@r" />
-              </xsl:call-template>
+              <xsl:value-of select="mcrurl:set-param($RequestURL,'r',@r)" />
             </xsl:variable>
             <span class="rev">
               <xsl:choose>
@@ -339,26 +348,102 @@
           </xsl:if>
           <xsl:if test="@action">
             <span class="action">
-              <xsl:value-of select="i18n:translate(concat('metaData.versions.action.',@action))" />
+              <xsl:value-of select="mcri18n:translate(concat('metaData.versions.action.',@action))"/>
             </span>
             <xsl:value-of select="' '" />
           </xsl:if>
           <span class="@date">
-            <xsl:call-template name="formatISODate">
-              <xsl:with-param name="date" select="@date" />
-              <xsl:with-param name="format" select="i18n:translate('metaData.dateTime')" />
-            </xsl:call-template>
+            <xsl:value-of select="format-dateTime(@date, mcri18n:translate('metaData.date.xsl3'))"/>
           </span>
           <xsl:value-of select="' '" />
           <xsl:if test="@user">
             <span class="user">
-              <xsl:value-of select="@user" />
+              <xsl:value-of select="@user"/>
             </span>
-            <xsl:value-of select="' '" />
+            <xsl:value-of select="' '"/>
           </xsl:if>
         </li>
       </xsl:for-each>
     </ol>
+  </xsl:template>
+
+  <xsl:template name="objectLink">
+    <!-- specify either one of them -->
+    <xsl:param name="obj_id"/>
+    <xsl:param name="mcrobj"/>
+    <xsl:choose>
+      <xsl:when test="$mcrobj">
+        <xsl:variable name="obj_id" select="$mcrobj/@ID"/>
+        <xsl:choose>
+          <xsl:when test="mcracl:check-permission($obj_id,'read')">
+            <a href="{$WebApplicationBaseURL}receive/{$obj_id}{$HttpSession}">
+              <xsl:attribute name="title">
+                <xsl:apply-templates select="$mcrobj" mode="fulltitle"/>
+              </xsl:attribute>
+              <xsl:apply-templates select="$mcrobj" mode="resulttitle"/>
+            </a>
+          </xsl:when>
+          <xsl:otherwise>
+            <!-- Build Login URL for LoginServlet -->
+            <xsl:variable name="LoginURL"
+                          select="concat( $ServletsBaseURL, 'MCRLoginServlet',$HttpSession,'?url=', encode-for-uri( string( $RequestURL ) ) )"/>
+            <xsl:apply-templates select="$mcrobj" mode="resulttitle"/>
+            &#160;
+            <a href="{$LoginURL}">
+              <img src="{concat($WebApplicationBaseURL,'images/paper_lock.gif')}"/>
+            </a>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+      <xsl:when test="string-length($obj_id)&gt;0">
+        <!-- handle old way which may cause a double parsing of mcrobject: -->
+        <xsl:variable name="mcrobj" select="document(concat('mcrobject:',$obj_id))/mycoreobject"/>
+        <xsl:choose>
+          <xsl:when test="mcracl:check-permission($obj_id,'read')">
+            <a href="{$WebApplicationBaseURL}receive/{$obj_id}{$HttpSession}">
+              <xsl:apply-templates select="$mcrobj" mode="resulttitle"/>
+            </a>
+          </xsl:when>
+          <xsl:otherwise>
+            <!-- Build Login URL for LoginServlet -->
+            <xsl:variable name="LoginURL"
+                          select="concat( $ServletsBaseURL, 'MCRLoginServlet',$HttpSession,'?url=', encode-for-uri( string( $RequestURL ) ) )"/>
+            <xsl:apply-templates select="$mcrobj" mode="resulttitle"/>
+            &#160;
+            <a href="{$LoginURL}">
+              <img src="{concat($WebApplicationBaseURL,'images/paper_lock.gif')}"/>
+            </a>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:when>
+    </xsl:choose>
+  </xsl:template>
+
+  <xsl:template name="webLink">
+    <xsl:param name="nodes" />
+    <xsl:param name="next" />
+    <xsl:for-each select="$nodes">
+      <xsl:if test="position() != 1">
+        <xsl:value-of select="$next" disable-output-escaping="yes" />
+      </xsl:if>
+      <xsl:variable name="href" select="@xlink:href" />
+      <xsl:variable name="title">
+        <xsl:choose>
+          <xsl:when test="@xlink:title">
+            <xsl:value-of select="@xlink:title" />
+          </xsl:when>
+          <xsl:when test="@xlink:label">
+            <xsl:value-of select="@xlink:label" />
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="@xlink:href" />
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:variable>
+      <a href="{@xlink:href}">
+        <xsl:value-of select="$title" />
+      </a>
+    </xsl:for-each>
   </xsl:template>
 
 </xsl:stylesheet>

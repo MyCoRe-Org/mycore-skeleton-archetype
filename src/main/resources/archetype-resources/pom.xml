@@ -19,7 +19,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <jetty.version>11.0.15</jetty.version>
     <!-- specifiy the MyCoRe version here (release nr or *-SNAPSHOT): -->
-    <mycore.version>2022.06.3-SNAPSHOT</mycore.version>
+    <mycore.version>2023.08-SNAPSHOT</mycore.version>
   </properties>
   <!-- put your Git or SVN URLs here -->
   <scm>

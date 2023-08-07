@@ -2,17 +2,18 @@
 <!-- ============================================== -->
 <!-- $Revision$ $Date$ -->
 <!-- ============================================== -->
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xlink="http://www.w3.org/1999/xlink"
-                xmlns:basket="xalan://org.mycore.frontend.basket.MCRBasketManager"
-                xmlns:mcr="http://www.mycore.org/" xmlns:i18n="xalan://org.mycore.services.i18n.MCRTranslation"
-                xmlns:mcrver="xalan://org.mycore.common.MCRCoreVersion"
-                xmlns:mcrxsl="xalan://org.mycore.common.xml.MCRXMLFunctions"
-                version="1.0"
-                exclude-result-prefixes="xlink basket mcr mcrver mcrxsl i18n">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:mcri18n="http://www.mycore.de/xslt/i18n"
+                xmlns:mcrversion="http://www.mycore.de/xslt/mcrversion"
+                xmlns:mcrlayoututils="http://www.mycore.de/xslt/layoututils"
+                xmlns:mcrurl="http://www.mycore.de/xslt/url"
+                exclude-result-prefixes="mcri18n mcrversion mcrlayoututils mcrurl"
+                version="3.0">
 
-  <xsl:import href="resource:xsl/layout/common-layout.xsl"/>
+  <xsl:include href="resource:xsl/MyCoReLayout-3.xsl" />
+  <xsl:include href="common-layout.xsl" />
 
-  <xsl:output method="html" doctype-system="about:legacy-compat" indent="yes" omit-xml-declaration="yes"
+  <xsl:output method="html" indent="yes" omit-xml-declaration="yes"
               media-type="text/html"
               version="5"/>
   <xsl:strip-space elements="*"/>
@@ -52,7 +53,7 @@
         </header>
 
         <div class="container my-5" id="page">
-          <xsl:call-template name="print.writeProtectionMessage"/>
+          <xsl:variable name="readAccess" select="mcrlayoututils:read-access(mcrurl:delete-session($RequestURL), '')" />
           <xsl:choose>
             <xsl:when test="$readAccess='true'">
               <xsl:copy-of select="*[not(name()='head')]"/>
@@ -113,7 +114,7 @@
         </footer>
 
 
-        <xsl:variable name="mcr_version" select="concat('MyCoRe ',mcrver:getCompleteVersion())" />
+        <xsl:variable name="mcr_version" select="concat('MyCoRe ', mcrversion:getCompleteVersion())" />
         <div id="powered_by" class="text-center">
           <a href="http://www.mycore.de">
             <img src="{$WebApplicationBaseURL}content/images/mycore_logo_powered_120x30_blaue_schrift_frei.png" title="{$mcr_version}" alt="powered by MyCoRe" />
@@ -134,10 +135,10 @@
           $( document ).ready(function() {
             $('.overtext').tooltip();
             $.confirm.options = {
-              text: "<xsl:value-of select="i18n:translate('confirm.text')" />",
-              title: "<xsl:value-of select="i18n:translate('confirm.title')" />",
-              confirmButton: "<xsl:value-of select="i18n:translate('confirm.confirmButton')" />",
-              cancelButton: "<xsl:value-of select="i18n:translate('confirm.cancelButton')" />",
+              text: "<xsl:value-of select="mcri18n:translate('confirm.text')" />",
+              title: "<xsl:value-of select="mcri18n:translate('confirm.title')" />",
+              confirmButton: "<xsl:value-of select="mcri18n:translate('confirm.confirmButton')" />",
+              cancelButton: "<xsl:value-of select="mcri18n:translate('confirm.cancelButton')" />",
               post: false
             }
           });

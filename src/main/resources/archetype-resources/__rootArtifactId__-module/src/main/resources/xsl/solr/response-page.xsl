@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:mods="http://www.loc.gov/mods/v3" xmlns:encoder="xalan://java.net.URLEncoder"
-  xmlns:i18n="xalan://org.mycore.services.i18n.MCRTranslation" xmlns:str="http://exslt.org/strings" xmlns:mcr="xalan://org.mycore.common.xml.MCRXMLFunctions"
-  xmlns:acl="xalan://org.mycore.access.MCRAccessManager" xmlns:mcrxsl="xalan://org.mycore.common.xml.MCRXMLFunctions" exclude-result-prefixes="i18n mods str mcr acl mcrxsl encoder">
-
-  <!-- retain the original query and parameters, for attaching them to a url -->
-  <xsl:variable name="query">
-    <xsl:if test="/response/lst[@name='responseHeader']/lst[@name='params']/str[@name='q'] != '*'">
-      <xsl:value-of select="/response/lst[@name='responseHeader']/lst[@name='params']/str[@name='q']" />
-    </xsl:if>
-  </xsl:variable>
+<xsl:stylesheet version="3.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:mcri18n="http://www.mycore.de/xslt/i18n">
 
   <xsl:template match="/response/result|lst[@name='grouped']/lst[@name='returnId']" priority="10">
     <xsl:variable name="ResultPages">
@@ -27,13 +19,13 @@
         <h1><small>
           <xsl:choose>
             <xsl:when test="$hits=0">
-              <xsl:value-of select="i18n:translate('results.noObject')" />
+              <xsl:value-of select="mcri18n:translate('results.noObject')" />
             </xsl:when>
             <xsl:when test="$hits=1">
-              <xsl:value-of select="i18n:translate('results.oneObject')" />
+              <xsl:value-of select="mcri18n:translate('results.oneObject')" />
             </xsl:when>
             <xsl:otherwise>
-              <xsl:value-of select="i18n:translate('results.nObjects',$hits)" />
+              <xsl:value-of select="mcri18n:translate-with-params('results.nObjects',$hits)" />
             </xsl:otherwise>
           </xsl:choose>
         </small></h1>
@@ -70,7 +62,7 @@
     <xsl:variable name="href" select="concat($proxyBaseURL,$HttpSession,$solrParams)" />
     <xsl:variable name="startPosition" select="$hitNumberOnPage - 1 + (($currentPage) -1) * $rows" />
     <xsl:variable name="hitHref">
-      <xsl:value-of select="concat($href, '&amp;start=',$startPosition, '&amp;fl=id&amp;rows=1&amp;origrows=', $rows, '&amp;XSL.Style=browse')" />
+      <xsl:value-of select="concat($href, '&amp;start=',$startPosition, '&amp;fl=id&amp;rows=1&amp;origrows=', $rows, '&amp;XSL.Style=browse-3')" />
     </xsl:variable>
 
 	<!-- hit entry -->
@@ -83,18 +75,18 @@
 			<h4 style="margin-top:0px"><xsl:value-of select="./arr[@name='${rootArtifactId}.title']/str[1]" /></h4>
 		</xsl:if>
 		<dl class="dl-horizontal">
-          <dt><xsl:value-of select="i18n:translate('search.response.link')" /></dt>
+          <dt><xsl:value-of select="mcri18n:translate('search.response.link')" /></dt>
           <dd>
             <a href="{$hitHref}">
               <!-- show score as title attribute-->
-              <xsl:attribute name="title"><xsl:value-of select="concat(i18n:translate('search.response.score'),' ', ./float[@name='score'])" /></xsl:attribute>
+              <xsl:attribute name="title"><xsl:value-of select="concat(mcri18n:translate('search.response.score'),' ', ./float[@name='score'])" /></xsl:attribute>
               <xsl:value-of select="$identifier" />
             </a>
           </dd>
-          <dt><xsl:value-of select="i18n:translate('search.response.created')" /></dt>
+          <dt><xsl:value-of select="mcri18n:translate('search.response.created')" /></dt>
           <dd>
 			<!-- creation date and creator -->
-            <xsl:value-of select="concat(./date[@name='created'], ' ', i18n:translate('search.response.created.by'),' ', ./str[@name='createdby'])" />
+            <xsl:value-of select="concat(./date[@name='created'], ' ', mcri18n:translate('search.response.created.by'),' ', ./str[@name='createdby'])" />
           </dd>
         </dl>
       </div>

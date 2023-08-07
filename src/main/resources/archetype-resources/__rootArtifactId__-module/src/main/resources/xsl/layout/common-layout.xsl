@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:xlink="http://www.w3.org/1999/xlink"
-                xmlns:basket="xalan://org.mycore.frontend.basket.MCRBasketManager"
-                xmlns:mcr="http://www.mycore.org/" xmlns:i18n="xalan://org.mycore.services.i18n.MCRTranslation"
-                xmlns:actionmapping="xalan://org.mycore.wfc.actionmapping.MCRURLRetriever"
-                xmlns:mcrver="xalan://org.mycore.common.MCRCoreVersion"
-                xmlns:mcrxsl="xalan://org.mycore.common.xml.MCRXMLFunctions"
-                xmlns:layoutUtils="xalan:///org.mycore.frontend.MCRLayoutUtilities"
-                xmlns:exslt="http://exslt.org/common"
-                version="1.0"
-                exclude-result-prefixes="layoutUtils xlink basket actionmapping mcr mcrver mcrxsl i18n exslt">
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+                xmlns:mcri18n="http://www.mycore.de/xslt/i18n"
+                xmlns:mcrstring="http://www.mycore.de/xslt/stringutils"
+                xmlns:mcrproperty="http://www.mycore.de/xslt/property"
+                xmlns:mcrurl="http://www.mycore.de/xslt/url"
+                xmlns:mcrlayoututils="http://www.mycore.de/xslt/layoututils"
+                exclude-result-prefixes="mcri18n mcrstring mcrproperty mcrurl"
+                version="3.0">
   <xsl:strip-space elements="*"/>
-  <xsl:param name="CurrentLang" select="'en'"/>
-  <xsl:param name="CurrentUser"/>
+
   <xsl:param name="numPerPage"/>
   <xsl:param name="previousObject"/>
   <xsl:param name="previousObjectHost"/>
@@ -20,37 +17,21 @@
   <xsl:param name="resultListEditorID"/>
   <xsl:param name="page"/>
   <xsl:param name="breadCrumb"/>
-  <xsl:param name="MCR.NameOfProject"/>
-  <xsl:param name="MCR.Metadata.Languages" select="'en'"/>
-  <xsl:include href="layout-utils.xsl"/>
-  <xsl:variable name="loaded_navigation_xml" select="layoutUtils:getPersonalNavigation()/navigation"/>
-  <xsl:variable name="browserAddress">
-    <xsl:call-template name="getBrowserAddress"/>
-  </xsl:variable>
-  <xsl:variable name="whiteList">
-    <xsl:call-template name="get.whiteList"/>
-  </xsl:variable>
-  <xsl:variable name="readAccess">
-    <xsl:choose>
-      <xsl:when test="starts-with($RequestURL, $whiteList)">
-        <xsl:value-of select="'true'"/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:copy-of select="layoutUtils:readAccess($browserAddress)"/>
-      </xsl:otherwise>
-    </xsl:choose>
-  </xsl:variable>
+
+  <xsl:variable name="loaded_navigation_xml" select="mcrlayoututils:get-personal-navigation()/navigation"/>
+  <xsl:variable name="browserAddress" select="$RequestURL" />
 
   <!-- ========== create login menu for current user ================================ -->
 
   <xsl:template name="loginMenu">
-    <xsl:variable xmlns:encoder="xalan://java.net.URLEncoder" name="loginURL"
-                  select="concat( $ServletsBaseURL, 'MCRLoginServlet',$HttpSession,'?url=', encoder:encode( string( $RequestURL ) ) )"/>
+    <xsl:variable name="loginURL"
+                  select="concat( $ServletsBaseURL, 'MCRLoginServlet',$HttpSession,'?url=', encode-for-uri( string( $RequestURL ) ) )"/>
+    <xsl:variable name="currentUserInfo" select="document('currentUserInfo:attribute=realName')"/>
     <xsl:choose>
-      <xsl:when test="mcrxsl:isCurrentUserGuestUser()">
+      <xsl:when test="$currentUserInfo/user/@id=mcrproperty:one('MCR.Users.Guestuser.UserName')">
         <li class="nav-item">
           <a id="loginURL" class="nav-link" href="{$loginURL}">
-            <xsl:value-of select="i18n:translate('component.userlogin.button.login')"/>
+            <xsl:value-of select="mcri18n:translate('component.userlogin.button.login')"/>
           </a>
         </li>
       </xsl:when>
@@ -62,7 +43,14 @@
             </xsl:attribute>
           </xsl:if>
           <a id="currentUser" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
-              <xsl:value-of select="$CurrentUser"/>
+            <xsl:choose>
+              <xsl:when test="count($currentUserInfo/user/attribute[@name='realName'])&gt;0 and string-length(currentUserInfo/user/attribute[@name='realName'][0]) &gt;0">
+                <xsl:value-of select="$currentUserInfo/user/attribute[@name='realName']"/>
+              </xsl:when>
+              <xsl:otherwise>
+                <xsl:value-of select="$currentUserInfo/user/@id"/>
+              </xsl:otherwise>
+            </xsl:choose>
           </a>
           <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dLabel">
             <xsl:apply-templates select="$loaded_navigation_xml/menu[@id='user']/*"/>
@@ -81,15 +69,7 @@
 
   <!-- ========== Check if current user has read access and show content if true ======= -->
   <xsl:template name="write.content">
-    <xsl:call-template name="print.writeProtectionMessage"/>
-    <xsl:choose>
-      <xsl:when test="$readAccess='true'">
         <xsl:apply-templates/>
-      </xsl:when>
-      <xsl:otherwise>
-        <xsl:call-template name="printNotLoggedIn"/>
-      </xsl:otherwise>
-    </xsl:choose>
   </xsl:template>
 
 
@@ -140,9 +120,7 @@
           <xsl:value-of select="@href"/>
         </xsl:when>
         <xsl:otherwise>
-          <xsl:call-template name="UrlAddSession">
-            <xsl:with-param name="url" select="concat($WebApplicationBaseURL,substring-after(@href,'/'))"/>
-          </xsl:call-template>
+          <xsl:value-of select="mcrurl:add-session(concat($WebApplicationBaseURL,substring-after(@href,'/')))" />
         </xsl:otherwise>
       </xsl:choose>
     </xsl:param>
@@ -179,21 +157,21 @@
     </xsl:choose>
   </xsl:template>
 
+  <xsl:template name="printNotLoggedIn">
+    <div class="alert alert-danger">
+      <xsl:value-of select="mcri18n:translate('webpage.notLoggedIn')" disable-output-escaping="yes" />
+    </div>
+  </xsl:template>
+
   <xsl:template name="languageMenu">
     <li class="nav-item dropdown">
-      <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" title="{i18n:translate('language.change')}">
-        <xsl:value-of select="i18n:translate(concat('language.change.', $CurrentLang))"/>
+      <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" title="{mcri18n:translate('language.change')}">
+        <xsl:value-of select="mcri18n:translate(concat('language.change.', $CurrentLang))"/>
       </a>
       <ul class="dropdown-menu language-menu" role="menu">
-        <xsl:variable name="availableLanguages">
-          <xsl:call-template name="Tokenizer"><!-- use split function from mycore-base/coreFunctions.xsl -->
-            <xsl:with-param name="string" select="$MCR.Metadata.Languages"/>
-            <xsl:with-param name="delimiter" select="','"/>
-          </xsl:call-template>
-        </xsl:variable>
-        <xsl:for-each select="exslt:node-set($availableLanguages)/token">
+        <xsl:for-each select="tokenize(mcrproperty:one('MCR.Metadata.Languages'), ',')">
           <xsl:variable name="lang">
-            <xsl:value-of select="mcrxsl:trim(.)"/>
+            <xsl:value-of select="mcrstring:trim(.)"/>
           </xsl:variable>
           <xsl:if test="$lang!='' and $CurrentLang!=$lang">
             <li class="nav-item">
@@ -202,8 +180,8 @@
                   <xsl:with-param name="lang" select="$lang"/>
                 </xsl:call-template>
               </xsl:variable>
-              <a class="nav-link" href="{$langURL}" title="{i18n:translate(concat('language.', $lang))}">
-                <xsl:value-of select="i18n:translate(concat('language.change.', $lang))"/>
+              <a class="nav-link" href="{$langURL}" title="{mcri18n:translate(concat('language.', $lang))}">
+                <xsl:value-of select="mcri18n:translate(concat('language.change.', $lang))"/>
               </a>
             </li>
           </xsl:if>
@@ -213,16 +191,8 @@
   </xsl:template>
   <xsl:template name="languageLink">
     <xsl:param name="lang"/>
-    <xsl:variable name="langURL">
-      <xsl:call-template name="UrlSetParam">
-        <xsl:with-param name="url" select="$RequestURL"/>
-        <xsl:with-param name="par" select="'lang'"/>
-        <xsl:with-param name="value" select="$lang"/>
-      </xsl:call-template>
-    </xsl:variable>
-    <xsl:call-template name="UrlAddSession">
-      <xsl:with-param name="url" select="$langURL"/>
-    </xsl:call-template>
+    <xsl:variable name="langURL" select="mcrurl:set-param($RequestURL,'lang',$lang)" />
+    <xsl:value-of select="mcrurl:add-session($langURL)" />
   </xsl:template>
 
 
