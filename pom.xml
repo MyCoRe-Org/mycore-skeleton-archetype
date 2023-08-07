@@ -10,7 +10,7 @@
 
   <groupId>org.mycore.skeleton</groupId>
   <artifactId>mycore-skeleton-archetype</artifactId>
-  <version>2022.06-SNAPSHOT</version>
+  <version>2023.06-SNAPSHOT</version>
   <packaging>maven-archetype</packaging>
 
   <name>mycore-skeleton-archetype</name>
@@ -78,7 +78,7 @@
     <connection>scm:git:http://github.com/MyCoRe-Org/mycore-skeleton-archetype.git</connection>
     <developerConnection>scm:git:https://github.com/MyCoRe-Org/mycore-skeleton-archetype.git</developerConnection>
     <url>https://github.com/MyCoRe-Org/mycore-skeleton-archetype</url>
-    <tag>2022.06.x</tag>
+    <tag>HEAD</tag>
   </scm>
   <profiles>
     <profile>
