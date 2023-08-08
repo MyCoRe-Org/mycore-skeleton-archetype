@@ -136,7 +136,7 @@
     <xsl:variable name="mainFile" select="maindoc/text()"/>
 
     <xsl:if test="string-length($mainFile)&gt;0">
-      <xsl:variable name="contentType" select="mcrderivate:getContentType($derId, $mainFile)"/>
+      <xsl:variable name="contentType" select="mcrderivate:get-file-content-type($derId, $mainFile)"/>
       <xsl:variable name="supportedContentTypes" select="tokenize($supportedContentTypeStr, ',')" />
       <xsl:variable name="isIview" select="$contentType = $supportedContentTypes"/>
       <xsl:variable name="isPDF" select="$contentType = 'application/pdf'"/>

@@ -114,7 +114,7 @@
         </footer>
 
 
-        <xsl:variable name="mcr_version" select="concat('MyCoRe ', mcrversion:getCompleteVersion())" />
+        <xsl:variable name="mcr_version" select="concat('MyCoRe ', mcrversion:get-complete-version())" />
         <div id="powered_by" class="text-center">
           <a href="http://www.mycore.de">
             <img src="{$WebApplicationBaseURL}content/images/mycore_logo_powered_120x30_blaue_schrift_frei.png" title="{$mcr_version}" alt="powered by MyCoRe" />
