@@ -75,10 +75,12 @@
                 });
             });
             $('.file-upload-box').on('shown.bs.collapse', function() {
-                if (!$(this).attr('id').contains("_derivate_")) {
+                if ($(this).attr('id').indexOf("_derivate_")==-1) {
                     this.scrollIntoView();
                 }
             });
+
+          $('.confirm_deletion').confirm();
         });
       </script> 
     </xsl:if>

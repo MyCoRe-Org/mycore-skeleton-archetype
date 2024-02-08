@@ -13,7 +13,7 @@
                 xmlns:mcrurl="http://www.mycore.de/xslt/url"
                 exclude-result-prefixes="xlink mcr mcri18n mcracl">
   &html-output;
-  <xsl:include href="MyCoReLayout-3.xsl"/>
+  <xsl:include href="MyCoReLayout.xsl"/>
   <!-- include custom templates for supported objecttypes -->
   <xsl:include href="xslInclude:objectTypes"/>
   <xsl:variable name="PageTitle">

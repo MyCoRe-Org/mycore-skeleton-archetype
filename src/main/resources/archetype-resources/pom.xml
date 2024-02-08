@@ -19,7 +19,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <jetty.version>11.0.15</jetty.version>
     <!-- specifiy the MyCoRe version here (release nr or *-SNAPSHOT): -->
-    <mycore.version>2023.08-SNAPSHOT</mycore.version>
+    <mycore.version>2023.06.1-SNAPSHOT</mycore.version>
   </properties>
   <!-- put your Git or SVN URLs here -->
   <scm>
@@ -223,12 +223,6 @@
         <artifactId>jsass</artifactId>
         <version>4.1.0</version>
       </dependency>
-      <!-- https://mvnrepository.com/artifact/com.mchange/c3p0 -->
-      <dependency>
-        <groupId>com.mchange</groupId>
-        <artifactId>c3p0</artifactId>
-        <version>0.9.5.4</version>
-      </dependency>
       <dependency>
         <groupId>org.mycore</groupId>
         <artifactId>mycore</artifactId>
@@ -267,6 +261,17 @@
         <groupId>org.webjars</groupId>
         <artifactId>jquery-migrate</artifactId>
         <version>1.4.1</version>
+      </dependency>
+      <dependency>
+        <groupId>org.webjars.npm</groupId>
+        <artifactId>jquery-confirm</artifactId>
+        <version>3.3.4</version>
+        <exclusions>
+          <exclusion>
+            <groupId>org.webjars.npm</groupId>
+            <artifactId>jquery</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
     </dependencies>
   </dependencyManagement>
