@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:mods="http://www.loc.gov/mods/v3"
-  xmlns:mcrxml="xalan://org.mycore.common.xml.MCRXMLFunctions"
-  xmlns:xlink="http://www.w3.org/1999/xlink" exclude-result-prefixes="mods xlink">
-  <xsl:import href="xslImport:solr-document:solr/searchfields-solr.xsl" />
+<xsl:stylesheet version="3.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+  <xsl:import href="xslImport:solr-document:solr/indexing/searchfields-solr.xsl" />
 
   <xsl:template match="mycoreobject">
     <xsl:apply-imports />

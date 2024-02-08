@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<xsl:stylesheet version="1.0"
+<xsl:stylesheet version="3.0"
   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-  xmlns:xalan="http://xml.apache.org/xalan"
-  xmlns:mcr="http://www.mycore.org/" 
-  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:mods="http://www.loc.gov/mods/v3"
-  xmlns:i18n="xalan://org.mycore.services.i18n.MCRTranslation" 
-  xmlns:acl="xalan://org.mycore.access.MCRAccessManager"
-  xmlns:encoder="xalan://java.net.URLEncoder" 
-  xmlns:mcrxsl="xalan://org.mycore.common.xml.MCRXMLFunctions"
-  xmlns:iview2="xalan://org.mycore.iview2.services.MCRIView2Tools"
-  xmlns:iview2xsl="xalan://org.mycore.iview2.frontend.MCRIView2XSLFunctionsAdapter"
-  exclude-result-prefixes="xalan xlink mcr i18n acl mods mcrxsl encoder">
+  xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:mcri18n="http://www.mycore.de/xslt/i18n"
+  xmlns:mcracl="http://www.mycore.de/xslt/acl"
+  xmlns:mcrderivate="http://www.mycore.de/xslt/derivate"
+  xmlns:mcrstring="http://www.mycore.de/xslt/stringutils"
+  xmlns:mcrproperty="http://www.mycore.de/xslt/property"
+  xmlns:mcriview2="http://www.mycore.de/xslt/iview2"
+  exclude-result-prefixes="xlink mcri18n mcracl mcrderivate mcrstring mcrproperty mcriview2">
   
   <xsl:param name="MCR.Users.Superuser.UserName" />
   <xsl:param name="MCR.URN.Resolver.MasterURL" select="''" />
@@ -47,20 +45,20 @@
   <!-- show derivates if available and CurrentUser has read access -->
   <xsl:template name="showDerivates">
 
-    <xsl:if test="structure/derobjects/derobject[acl:checkPermission(@xlink:href,'read')]">
-        <xsl:apply-templates select="structure/derobjects/derobject[acl:checkPermission(@xlink:href,'read')]">
+    <xsl:if test="structure/derobjects/derobject[mcracl:check-permission(@xlink:href,'read')]">
+        <xsl:apply-templates select="structure/derobjects/derobject[mcracl:check-permission(@xlink:href,'read')]">
           <xsl:with-param name="objID" select="@ID" />
         </xsl:apply-templates>
     </xsl:if>
     
-    <xsl:if test="acl:checkPermission(@ID,'writedb')">
+    <xsl:if test="mcracl:check-permission(@ID,'writedb')">
       <div id="mcr-file-upload-{@ID}" class="file-upload-box well collapse" data-upload-object="{@ID}" data-upload-target="/">
         <i class="fa fa-upload" style="float:left;font-size:333%;margin-right:0.5em"></i>
         <h4 style="margin-top:0px">
-          <xsl:value-of select="concat(' ', i18n:translate('fileupload.drop.headline.new-derivate'))" />
+          <xsl:value-of select="concat(' ', mcri18n:translate('fileupload.drop.headline.new-derivate'))" />
         </h4>
-        <xsl:value-of disable-output-escaping="yes"
-          select="concat(' ', i18n:translate('fileupload.drop.upload-file'))" />
+        <xsl:copy-of
+          select="parse-xml-fragment(concat(' ', mcri18n:translate('fileupload.drop.upload-file')))" />
       </div>
   
       <script>
@@ -77,10 +75,12 @@
                 });
             });
             $('.file-upload-box').on('shown.bs.collapse', function() {
-                if (!$(this).attr('id').contains("_derivate_")) {
+                if ($(this).attr('id').indexOf("_derivate_")==-1) {
                     this.scrollIntoView();
                 }
             });
+
+          $('.confirm_deletion').confirm();
         });
       </script> 
     </xsl:if>
@@ -89,8 +89,8 @@
   <xsl:template name="objectActions">
     <xsl:param name="id" select="./@ID" />
     <xsl:param name="objectType" select="substring-before(substring-after(@ID,'_'),'_')" />
-    <xsl:param name="accessedit" select="acl:checkPermission($id,'writedb')" />
-    <xsl:param name="accessdelete" select="acl:checkPermission($id,'deletedb')" />
+    <xsl:param name="accessedit" select="mcracl:check-permission($id,'writedb')" />
+    <xsl:param name="accessdelete" select="mcracl:check-permission($id,'deletedb')" />
 
     <xsl:if test="$accessedit or $accessdelete">
       <div class="dropdown float-right">
@@ -101,24 +101,24 @@
         <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
           <li class="dropdown-item" role="presentation">
             <a role="menuitem" tabindex="-1" href="{$WebApplicationBaseURL}content/publish/{$objectType}.xed?id={$id}">
-              <xsl:value-of select="i18n:translate('object.editObject')" />
+              <xsl:value-of select="mcri18n:translate('object.editObject')" />
             </a>
           </li>
           <li class="dropdown-item" role="presentation">
             <!-- 
             <a href="{$ServletsBaseURL}derivate/create{$HttpSession}?id={$id}" role="menuitem" tabindex="-1">
-              <xsl:value-of select="i18n:translate('derivate.addDerivate')" />
+              <xsl:value-of select="mcri18n:translate('derivate.addDerivate')" />
             </a>
             -->
             <a href="#mcr-file-upload-{@ID}" role="menuitem" data-toggle="collapse" tabindex="-1">
-              <xsl:value-of select="i18n:translate('derivate.addDerivate')" />
+              <xsl:value-of select="mcri18n:translate('derivate.addDerivate')" />
             </a>
             
           </li>
           <xsl:if test="$accessdelete">
             <li class="dropdown-item" role="presentation">
               <a href="{$ServletsBaseURL}object/delete{$HttpSession}?id={$id}" role="menuitem" tabindex="-1">
-                <xsl:value-of select="i18n:translate('object.delObject')" />
+                <xsl:value-of select="mcri18n:translate('object.delObject')" />
               </a>
             </li>
           </xsl:if>
@@ -134,32 +134,39 @@
     <xsl:param name="objID" />
     <xsl:variable name="derId" select="@xlink:href" />
     <xsl:variable name="derivateXML" select="document(concat('mcrobject:',$derId))" />
-    <xsl:variable name="isIview" select="iview2:getSupportedMainFile($derId)"/>
+    <xsl:variable name="supportedContentTypeStr" select="mcrproperty:one('MCR.Module-iview2.SupportedContentTypes')" />
     <xsl:variable name="mainFile" select="maindoc/text()"/>
-    <xsl:variable name="isPDF" select="mcrxsl:getMimeType($mainFile) = 'application/pdf'"/>
-    <xsl:variable name="isEpub" select="contains($mainFile, '.epub') and normalize-space(substring-after($mainFile, '.epub')) = ''" />
-    <xsl:choose>
-      <xsl:when test="$isIview or $isPDF or $isEpub">
-        <xsl:choose>
-          <xsl:when test="$isPDF or $isEpub or iview2:isCompletelyTiled($derId)">
-            <xsl:variable name="viewerID" select="concat($derId,':/', $mainFile)" />
-            <div class="row">
-              <div class="col-12">
-                <div data-viewer="{$viewerID}" style="min-height:500px; position:relative;">
+
+    <xsl:if test="string-length($mainFile)&gt;0">
+      <xsl:variable name="contentType" select="mcrderivate:get-file-content-type($derId, $mainFile)"/>
+      <xsl:variable name="supportedContentTypes" select="tokenize($supportedContentTypeStr, ',')" />
+      <xsl:variable name="isIview" select="$contentType = $supportedContentTypes"/>
+      <xsl:variable name="isPDF" select="$contentType = 'application/pdf'"/>
+      <xsl:variable name="isEpub" select="contains($mainFile, '.epub') and normalize-space(substring-after($mainFile, '.epub')) = ''" />
+      <xsl:choose>
+        <xsl:when test="$isIview or $isPDF or $isEpub">
+          <xsl:choose>
+            <xsl:when test="$isPDF or $isEpub or mcriview2:is-completely-tiled($derId)">
+              <xsl:variable name="viewerID" select="concat($derId,':/', $mainFile)" />
+              <div class="row">
+                <div class="col-12">
+                  <div data-viewer="{$viewerID}" style="min-height:500px; position:relative;">
+                  </div>
                 </div>
               </div>
-            </div>
-            <script src="{$WebApplicationBaseURL}rsc/viewer/{$derId}/{$mainFile}?embedded=true&amp;XSL.Style=js">
-            </script>
-          </xsl:when>
-          <xsl:otherwise>
-            <div class="card card-body bg-light no-viewer">
-              <xsl:value-of select="i18n:translate('metaData.previewInProcessing', $derId)" />
-            </div>
-          </xsl:otherwise>
-        </xsl:choose>
-      </xsl:when>
-    </xsl:choose>
+              <script src="{$WebApplicationBaseURL}rsc/viewer/{$derId}/{$mainFile}?embedded=true&amp;XSL.Style=js">
+              </script>
+            </xsl:when>
+            <xsl:otherwise>
+              <div class="card card-body bg-light no-viewer">
+                <xsl:value-of select="mcri18n:translate-with-params('metaData.previewInProcessing', $derId)" />
+              </div>
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:when>
+      </xsl:choose>
+    </xsl:if>
+
 
     <div id="mcr-files-{@xlink:href}" class="file_box">
       <div class="row header">
@@ -176,7 +183,7 @@
                       <xsl:value-of select="@xlink:title" />
                     </xsl:when>
                     <xsl:otherwise>
-                      <xsl:value-of select="i18n:translate('metadata.derivates.files')" />
+                      <xsl:value-of select="mcri18n:translate('metadata.derivates.files')" />
                       <xsl:if test="position() > 1">
                           <span class="set_number">
                             <xsl:value-of select="position()" />
@@ -204,11 +211,11 @@
         <xsl:variable name="maindoc" select="$derivateXML/mycorederivate/derivate/internals/internal/@maindoc" />
         <xsl:variable name="path" select="$ifsDirectory/mcr_directory/path" />
 		
-		<xsl:if test="acl:checkPermission($derId,'writedb')">
+		<xsl:if test="mcracl:check-permission($derId,'writedb')">
   		 <div id="mcr-file-upload-{$derId}" class="file-upload-box well well-sm collapse col-10 col-offset-1" style="margin-top:1em" data-upload-object="{$derId}" data-upload-target="/">
            <i class="fa fa-upload" style="float:left;font-size:275%;margin-right:0.5em"></i>
-  		   <h5 style="margin-top:0px"><strong><xsl:value-of select="concat(' ', i18n:translate('fileupload.drop.headline.new-file'))"/></strong></h5>
-           <xsl:value-of disable-output-escaping="yes" select="concat(' ', i18n:translate('fileupload.drop.upload-file'))"/>
+  		   <h5 style="margin-top:0px"><strong><xsl:value-of select="concat(' ', mcri18n:translate('fileupload.drop.headline.new-file'))"/></strong></h5>
+           <xsl:copy-of select="parse-xml-fragment(concat(' ', mcri18n:translate('fileupload.drop.upload-file')))"/>
          </div>
 		</xsl:if>
         <xsl:for-each select="$ifsDirectory/mcr_directory/children/child">
@@ -237,7 +244,7 @@
     </xsl:apply-templates>
 
     <xsl:variable name="dirName" select="./name" />
-    <xsl:variable name="directory" select="document(concat('ifs:',$derId,'/',mcrxsl:encodeURIPath($dirName)))" />
+    <xsl:variable name="directory" select="document(concat('ifs:',$derId,'/',encode-for-uri($dirName)))" />
     <xsl:for-each select="$directory/mcr_directory/children/child">
       <xsl:apply-templates select="." mode="childWriter">
         <xsl:with-param name="derId"><xsl:value-of select="$derId" /></xsl:with-param>
@@ -275,7 +282,7 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <xsl:variable name="filePath" select="concat($derId,'/',mcrxsl:encodeURIPath($fileName),$HttpSession)" />
+    <xsl:variable name="filePath" select="concat($derId,'/',encode-for-uri($fileName),$HttpSession)" />
     <xsl:variable name="fileCss">
       <xsl:choose>
         <xsl:when test="$maindoc = $fileName">
@@ -288,7 +295,7 @@
     </xsl:variable>
     <div class="col-12">
       <div class="file_set {$fileCss}">
-        <xsl:if test="(acl:checkPermission($derId,'writedb') or acl:checkPermission($derId,'deletedb'))">
+        <xsl:if test="(mcracl:check-permission($derId,'writedb') or mcracl:check-permission($derId,'deletedb'))">
           <div class="options float-right">
             <div class="btn-group">
               <a href="#" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
@@ -296,28 +303,28 @@
                 <span class="caret"></span>
               </a>
               <ul class="dropdown-menu dropdown-menu-right">
-                <xsl:if test="acl:checkPermission($derId,'writedb') and @type!='directory'">
+                <xsl:if test="mcracl:check-permission($derId,'writedb') and @type!='directory'">
                   <li class="dropdown-item">
-                    <a title="{i18n:translate('IFS.mainFile')}"
+                    <a title="{mcri18n:translate('IFS.mainFile')}"
                       href="{$WebApplicationBaseURL}servlets/MCRDerivateServlet{$HttpSession}?derivateid={$derId}&amp;objectid={$objID}&amp;todo=ssetfile&amp;file={$fileName}"
                       class="option" >
                       <span class="fa fa-star"></span>
-                      <xsl:value-of select="i18n:translate('IFS.mainFile')" />
+                      <xsl:value-of select="mcri18n:translate('IFS.mainFile')" />
                     </a>
                   </li>
                 </xsl:if>
-                <xsl:if test="acl:checkPermission($derId,'deletedb')">
+                <xsl:if test="mcracl:check-permission($derId,'deletedb')">
                   <li class="dropdown-item">
                     <a href="{$WebApplicationBaseURL}servlets/MCRDerivateServlet{$HttpSession}?derivateid={$derId}&amp;objectid={$objID}&amp;todo=sdelfile&amp;file={$fileName}"
                       class="option confirm_deletion">
                       <xsl:attribute name="data-text">
-                        <xsl:value-of select="i18n:translate(concat('mir.confirm.',@type,'.text'))" />
+                        <xsl:value-of select="mcri18n:translate(concat('mir.confirm.',@type,'.text'))" />
                       </xsl:attribute>
                       <xsl:attribute name="title">
-                        <xsl:value-of select="i18n:translate(concat('IFS.',@type,'Delete'))" />
+                        <xsl:value-of select="mcri18n:translate(concat('IFS.',@type,'Delete'))" />
                       </xsl:attribute>
                       <span class="fa fa-trash"></span>
-                      <xsl:value-of select="i18n:translate(concat('IFS.',@type,'Delete'))" />
+                      <xsl:value-of select="mcri18n:translate(concat('IFS.',@type,'Delete'))" />
                     </a>
                   </li>
                 </xsl:if>
@@ -327,17 +334,13 @@
         </xsl:if>
         <span class="file_size">
           <xsl:text>[ </xsl:text>
-          <xsl:variable name="s" select="size" />
-          <xsl:value-of xmlns:mcrutil="xalan://org.mycore.common.MCRUtils" select="mcrutil:getSizeFormatted($s)" />
+          <xsl:value-of select="mcrstring:pretty-filesize(size)" />
           <xsl:text> ]</xsl:text>
         </span>
 
 
         <span class="file_date">
-          <xsl:call-template name="formatISODate">
-            <xsl:with-param name="date" select="date[@type='lastModified']" />
-            <xsl:with-param name="format" select="i18n:translate('metaData.date')" />
-          </xsl:call-template>
+          <xsl:value-of select="format-dateTime(date[@type='lastModified'], mcri18n:translate('metaData.date.xsl3'))" />
         </span>
         <span class="file_name">
           <xsl:choose>
@@ -366,7 +369,7 @@
     <xsl:param name="parentObjID" />
     <xsl:param name="suffix" select="''" />
 
-    <xsl:if test="acl:checkPermission($deriv,'writedb')">
+    <xsl:if test="mcracl:check-permission($deriv,'writedb')">
       <xsl:variable select="concat('mcrobject:',$deriv)" name="derivlink" />
       <xsl:variable select="document($derivlink)" name="derivate" />
    
@@ -381,18 +384,18 @@
           <ul class="dropdown-menu dropdown-menu-right">
             <li class="dropdown-item">
               <a href="#mcr-file-upload-{$deriv}" class="option" data-toggle="collapse">
-                <xsl:value-of select="i18n:translate('component.mods.metaData.options.addFile')" />
+                <xsl:value-of select="mcri18n:translate('component.mods.metaData.options.addFile')" />
               </a>
             </li>
             <li class="dropdown-item">
               <a href="{$WebApplicationBaseURL}content/publish/derivate-label.xed?derivateid={$deriv}&amp;objectid={$parentObjID}{$HttpSession}">
-                <xsl:value-of select="i18n:translate('component.mods.metaData.options.updateDerivateName')" />
+                <xsl:value-of select="mcri18n:translate('component.mods.metaData.options.updateDerivateName')" />
               </a>
             </li>
-            <xsl:if test="acl:checkPermission($deriv,'deletedb')">
+            <xsl:if test="mcracl:check-permission($deriv,'deletedb')">
               <li class="dropdown-item last">
-                <a href="{$ServletsBaseURL}derivate/delete{$HttpSession}?id={$deriv}" class="confirm_deletion option" data-text="{i18n:translate('mir.confirm.derivate.text')}">
-                  <xsl:value-of select="i18n:translate('component.mods.metaData.options.delDerivate')" />
+                <a href="{$ServletsBaseURL}derivate/delete{$HttpSession}?id={$deriv}" class="confirm_deletion option" data-text="{mcri18n:translate('mir.confirm.derivate.text')}">
+                  <xsl:value-of select="mcri18n:translate('component.mods.metaData.options.delDerivate')" />
                 </a>
               </li>
             </xsl:if>
