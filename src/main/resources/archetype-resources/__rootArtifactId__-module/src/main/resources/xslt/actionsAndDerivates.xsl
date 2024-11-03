@@ -106,7 +106,7 @@
           </li>
           <li class="dropdown-item" role="presentation">
             <!-- 
-            <a href="{$ServletsBaseURL}derivate/create{$HttpSession}?id={$id}" role="menuitem" tabindex="-1">
+            <a href="{$ServletsBaseURL}derivate/create?id={$id}" role="menuitem" tabindex="-1">
               <xsl:value-of select="mcri18n:translate('derivate.addDerivate')" />
             </a>
             -->
@@ -117,7 +117,7 @@
           </li>
           <xsl:if test="$accessdelete">
             <li class="dropdown-item" role="presentation">
-              <a href="{$ServletsBaseURL}object/delete{$HttpSession}?id={$id}" role="menuitem" tabindex="-1">
+              <a href="{$ServletsBaseURL}object/delete?id={$id}" role="menuitem" tabindex="-1">
                 <xsl:value-of select="mcri18n:translate('object.delObject')" />
               </a>
             </li>
@@ -282,7 +282,7 @@
         </xsl:otherwise>
       </xsl:choose>
     </xsl:variable>
-    <xsl:variable name="filePath" select="concat($derId,'/',encode-for-uri($fileName),$HttpSession)" />
+    <xsl:variable name="filePath" select="concat($derId,'/',encode-for-uri($fileName))" />
     <xsl:variable name="fileCss">
       <xsl:choose>
         <xsl:when test="$maindoc = $fileName">
@@ -306,7 +306,7 @@
                 <xsl:if test="mcracl:check-permission($derId,'writedb') and @type!='directory'">
                   <li class="dropdown-item">
                     <a title="{mcri18n:translate('IFS.mainFile')}"
-                      href="{$WebApplicationBaseURL}servlets/MCRDerivateServlet{$HttpSession}?derivateid={$derId}&amp;objectid={$objID}&amp;todo=ssetfile&amp;file={$fileName}"
+                      href="{$WebApplicationBaseURL}servlets/MCRDerivateServlet?derivateid={$derId}&amp;objectid={$objID}&amp;todo=ssetfile&amp;file={$fileName}"
                       class="option" >
                       <span class="fa fa-star"></span>
                       <xsl:value-of select="mcri18n:translate('IFS.mainFile')" />
@@ -315,7 +315,7 @@
                 </xsl:if>
                 <xsl:if test="mcracl:check-permission($derId,'deletedb')">
                   <li class="dropdown-item">
-                    <a href="{$WebApplicationBaseURL}servlets/MCRDerivateServlet{$HttpSession}?derivateid={$derId}&amp;objectid={$objID}&amp;todo=sdelfile&amp;file={$fileName}"
+                    <a href="{$WebApplicationBaseURL}servlets/MCRDerivateServlet?derivateid={$derId}&amp;objectid={$objID}&amp;todo=sdelfile&amp;file={$fileName}"
                       class="option confirm_deletion">
                       <xsl:attribute name="data-text">
                         <xsl:value-of select="mcri18n:translate(concat('mir.confirm.',@type,'.text'))" />
@@ -388,13 +388,13 @@
               </a>
             </li>
             <li class="dropdown-item">
-              <a href="{$WebApplicationBaseURL}content/publish/derivate-label.xed?derivateid={$deriv}&amp;objectid={$parentObjID}{$HttpSession}">
+              <a href="{$WebApplicationBaseURL}content/publish/derivate-label.xed?derivateid={$deriv}&amp;objectid={$parentObjID}">
                 <xsl:value-of select="mcri18n:translate('component.mods.metaData.options.updateDerivateName')" />
               </a>
             </li>
             <xsl:if test="mcracl:check-permission($deriv,'deletedb')">
               <li class="dropdown-item last">
-                <a href="{$ServletsBaseURL}derivate/delete{$HttpSession}?id={$deriv}" class="confirm_deletion option" data-text="{mcri18n:translate('mir.confirm.derivate.text')}">
+                <a href="{$ServletsBaseURL}derivate/delete?id={$deriv}" class="confirm_deletion option" data-text="{mcri18n:translate('mir.confirm.derivate.text')}">
                   <xsl:value-of select="mcri18n:translate('component.mods.metaData.options.delDerivate')" />
                 </a>
               </li>

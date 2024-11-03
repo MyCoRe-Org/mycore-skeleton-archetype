@@ -158,7 +158,7 @@
 
     <div id="header_box" class="clearfix container">
       <div style="font-size:200%;margin:6px" id="project_logo_box">
-        <a href="{concat($WebApplicationBaseURL,substring($loaded_navigation_xml/@hrefStartingPage,2),$HttpSession)}">
+        <a href="{concat($WebApplicationBaseURL,substring($loaded_navigation_xml/@hrefStartingPage,2))}">
           <img style="height:40px;margin-right:10px" alt="Skeleton"
                src="{$WebApplicationBaseURL}content/images/skeleton.png"/>
           ${projectName} (created by <a href="https://github.com/MyCoRe-Org/mycore-skeleton-archetype">mycore-skeleton-archetype</a>)

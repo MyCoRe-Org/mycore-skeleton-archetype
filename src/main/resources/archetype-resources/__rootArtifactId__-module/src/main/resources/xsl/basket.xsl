@@ -5,7 +5,7 @@
   <xsl:param name="HttpSession" />
 
   <xsl:template match="mycoreobject" mode="addToBasket">
-    <a class="addToBasket" href="{$ServletsBaseURL}MCRBasketServlet{$HttpSession}?type=objects&amp;action=add&amp;id={@ID}&amp;uri=mcrobject:{@ID}">
+    <a class="addToBasket" href="{$ServletsBaseURL}MCRBasketServlet?type=objects&amp;action=add&amp;id={@ID}&amp;uri=mcrobject:{@ID}">
       <xsl:value-of select="i18n:translate('basket.add')" />
     </a>
   </xsl:template>
