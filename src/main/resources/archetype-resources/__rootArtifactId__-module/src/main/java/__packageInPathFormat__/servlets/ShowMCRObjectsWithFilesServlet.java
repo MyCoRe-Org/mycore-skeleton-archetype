@@ -1,4 +1,4 @@
-package org.sample.mycore.mycore_sample_1.servlets;
+package ${package}.servlets;
 
 import java.io.IOException;
 import java.io.PrintWriter;
