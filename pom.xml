@@ -5,12 +5,12 @@
   <parent>
     <artifactId>mycore-parent</artifactId>
     <groupId>org.mycore</groupId>
-    <version>51</version>
+    <version>55</version>
   </parent>
 
   <groupId>org.mycore.skeleton</groupId>
   <artifactId>mycore-skeleton-archetype</artifactId>
-  <version>2023.06-SNAPSHOT</version>
+  <version>2024.06-SNAPSHOT</version>
   <packaging>maven-archetype</packaging>
 
   <name>mycore-skeleton-archetype</name>
@@ -26,7 +26,7 @@
       <extension>
         <groupId>org.apache.maven.archetype</groupId>
         <artifactId>archetype-packaging</artifactId>
-        <version>3.2.1</version>
+        <version>3.3.1</version>
       </extension>
     </extensions>
 
@@ -34,7 +34,7 @@
       <plugins>
         <plugin>
           <artifactId>maven-archetype-plugin</artifactId>
-          <version>3.2.1</version>
+          <version>3.3.1</version>
         </plugin>
       </plugins>
     </pluginManagement>
